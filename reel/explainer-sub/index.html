@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #0a0a0c; }
+      #root { position: relative; width: 100%; height: 100%; }
+      #clip { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; }
+    </style>
+  </head>
+  <body>
+    <!-- The Gemini Omni explainer with its own narration, plus word-timed subtitles. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="8" data-width="1920" data-height="1080">
+      <video id="clip" class="clip" src="assets/explainer.mp4" playsinline data-has-audio="true" data-start="0" data-duration="8" data-track-index="1" style="z-index:1"></video>
+      <div id="subs" data-composition-id="subs" data-composition-src="compositions/subs.html" data-track-kind="captions" data-start="0" data-duration="8" data-track-index="2" data-width="1920" data-height="1080" style="z-index:2"></div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

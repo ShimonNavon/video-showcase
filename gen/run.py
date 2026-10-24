@@ -30,7 +30,8 @@ def save():
 
 
 def run(job):
-    cmd = ['higgsfield', 'generate', 'create', job['model'], '--wait', '--wait-timeout', '25m', '--json']
+    verb = ['workflow', job['model']] if job.get('workflow') else ['create', job['model']]
+    cmd = ['higgsfield', 'generate', *verb, '--wait', '--wait-timeout', '25m', '--json']
     if job.get('prompt'):
         cmd += ['--prompt', job['prompt']]
     for k, v in job.get('params', {}).items():

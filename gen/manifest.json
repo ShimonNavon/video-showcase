@@ -152,5 +152,159 @@
     "prompt": null,
     "credits": 1,
     "job_id": "b213fc95-20f3-4e25-ae5b-36b48e00f438"
+  },
+  "clay-fox": {
+    "file": "gen/out/clay-fox.png",
+    "model": "ffmpeg",
+    "prompt": "Frame at 4.5 s of the clay fox clip",
+    "credits": 0,
+    "job_id": null
+  },
+  "t2v-anime": {
+    "file": "gen/out/t2v-anime.mp4",
+    "model": "kling4_0",
+    "prompt": "Anime style, hand-drawn cel animation: a girl on a bicycle races down a hillside road toward the sea at sunset, hair and scarf streaming in the wind, cherry blossom petals swirling, vivid Ghibli-like colours",
+    "credits": 2.5,
+    "job_id": "bc75a9a2-0234-47dc-9c73-6da155d9e02b"
+  },
+  "i2v-portrait": {
+    "file": "gen/out/i2v-portrait.mp4",
+    "model": "kling4_0",
+    "prompt": "She blinks, breathes, glances to the side, then looks back into the lens with a slight smile; soft hair movement, subtle natural motion",
+    "credits": 5,
+    "job_id": "3ae0aa00-6624-4349-9332-62cb14162421"
+  },
+  "i2v-turntable": {
+    "file": "gen/out/i2v-turntable.mp4",
+    "model": "kling4_0",
+    "prompt": "The bottle rotates slowly in place like a product turntable while orange slices and juice droplets float around it in slow motion",
+    "credits": 5,
+    "job_id": "6f8158ca-7a10-42ca-be7c-7e07d850e1d5"
+  },
+  "reveal-a": {
+    "file": "gen/out/reveal-a.png",
+    "model": "gpt_image_2_5",
+    "prompt": "A cluttered, dusty empty garage workshop with bare concrete walls, a single bulb, boxes and junk everywhere, wide shot, photograph",
+    "credits": 0.25,
+    "job_id": "35fd86cf-de26-40c9-9b73-59e7a19e988c"
+  },
+  "reveal-b": {
+    "file": "gen/out/reveal-b.png",
+    "model": "gpt_image_2_5",
+    "prompt": "The same garage transformed into a bright, cozy design studio: white walls, plants, a large wooden desk with a computer, warm lights, clean floor, same camera angle, wide shot, photograph",
+    "credits": 0.25,
+    "job_id": "76266a29-e5f1-4d4c-87a2-fa4435efe704"
+  },
+  "sfx-video": {
+    "file": "gen/out/sfx-video.mp4",
+    "model": "veo3_1_lite",
+    "prompt": "Close-up slow motion: a wine glass falls from a kitchen counter and shatters on a tiled floor, shards scattering; crisp glass-breaking sound exactly on impact, quiet room tone",
+    "credits": 6,
+    "job_id": "02033795-7e7e-4e41-91ab-e69e3875a65a"
+  },
+  "choreo-src": {
+    "file": "gen/out/choreo-src.mp4",
+    "model": "kling4_0",
+    "prompt": "Full-body shot of a street dancer performing an energetic hip-hop routine in an empty studio with a plain grey wall, camera static, the whole body always in frame",
+    "credits": 2.5,
+    "job_id": "15cd5284-96bb-4ce5-b316-9234441c1453"
+  },
+  "replace": {
+    "file": "gen/out/replace.mp4",
+    "model": "hf_mult_replace_object_flash",
+    "prompt": "Replace the coffee cup with the orange juice bottle from the reference image, keep the table, light and camera move",
+    "credits": 12,
+    "job_id": "1ff27312-266a-45c2-a4c4-8e6914a22088"
+  },
+  "restyle": {
+    "file": "gen/out/restyle.mp4",
+    "model": "kling_video_edit",
+    "prompt": "Restyle the whole clip as a Van Gogh oil painting with thick swirling brushstrokes, keep the diver, the manta ray and the motion the same",
+    "credits": 7.5,
+    "job_id": "ce37c415-256a-434d-ab76-908617dd4b02"
+  },
+  "upscale": {
+    "file": "gen/out/upscale.mp4",
+    "model": "video_upscale",
+    "prompt": null,
+    "credits": 2,
+    "job_id": "e1879769-cecb-4281-b5a2-ca695db8e296"
+  },
+  "dub": {
+    "file": "gen/out/dub.mp4",
+    "model": "dubbing",
+    "prompt": null,
+    "credits": 18,
+    "job_id": "1069db20-37ac-4d62-a86d-aa129821f82a"
+  },
+  "voice": {
+    "file": "gen/out/voice.mp4",
+    "model": "voice_change",
+    "prompt": null,
+    "credits": 1,
+    "job_id": "7214754b-aafd-4976-914a-43e8e18aa024"
+  },
+  "ad-image": {
+    "file": "gen/out/ad-image.png",
+    "model": "marketing_studio_image",
+    "prompt": "Instagram product ad for this orange juice: the bottle on a sunny breakfast table, bold headline Squeezed This Morning, small price tag $4.99, clean modern layout",
+    "credits": 2,
+    "job_id": "b6fa65a7-1823-4ca0-9e93-c1aa48a86786"
+  },
+  "explainer-video": {
+    "file": "gen/out/explainer-video.mp4",
+    "model": "gemini_omni",
+    "prompt": "Animated explainer in exactly the warm paper-cut illustration style of the reference image: a seed in the soil sprouts, grows roots and leaves, and becomes a small tree as the sun rises. A warm friendly narrator says: Every big tree starts as a tiny seed. Give it water, light and time, and it grows.",
+    "credits": 24,
+    "job_id": "9d8fa460-cd84-4ddd-8128-e44aea1f7e2f"
+  },
+  "sfx": {
+    "file": "gen/out/sfx.mp3",
+    "model": "seed_audio",
+    "prompt": "Sound effect: heavy wooden door creaks open slowly, then slams shut with an echo in a stone hallway",
+    "credits": 0.1,
+    "job_id": "01320cac-f446-4ff1-bd1a-17596ccc3c2f"
+  },
+  "reveal": {
+    "file": "gen/out/reveal.mp4",
+    "model": "kling_o3_flf",
+    "prompt": "Makeover reveal: the clutter clears away and the room transforms into the finished studio, smooth continuous transformation, locked-off camera",
+    "credits": 5,
+    "job_id": "581082d4-99bc-4386-a882-42df899659b5"
+  },
+  "choreo": {
+    "file": "gen/out/choreo.mp4",
+    "model": "kling3_0_motion_control",
+    "prompt": null,
+    "credits": 10,
+    "job_id": "6a55f702-66af-4090-aedb-329dde32f08e"
+  },
+  "import": {
+    "file": "gen/out/import.png",
+    "model": "marketing_studio_product_fetch",
+    "credits": 0,
+    "job_id": "8d767ff0-d2ba-4d27-82e0-2f18c6948ad5",
+    "prompt": "higgsfield marketing-studio products fetch --url https://video-studio.navonsimon.com/demo-product.html\n\nImported product: \"Pure Orange Juice\", with its description, price and image, ready to use in Marketing Studio ads. The page is a made-up demo product hosted on this site."
+  },
+  "ending-b": {
+    "file": "gen/out/ending-b.png",
+    "model": "gpt_image_2_5",
+    "prompt": "Photograph, morning window light: the same black ceramic cup with a gold rim on the same walnut table, now empty. Beside it lies a small handwritten note card. The only words on the card are: \"See you tomorrow\"",
+    "credits": 0.25,
+    "job_id": "1692f6cd-9571-4f20-a6c7-b49ddc88d9e0"
+  },
+  "ending": {
+    "file": "gen/out/ending.mp4",
+    "model": "kling_o3_flf",
+    "prompt": "A hand lifts the cup, the steam fades, the cup is set back down empty and a handwritten note slides into frame beside it; the shot ends exactly on the final frame",
+    "credits": 5,
+    "job_id": "220d105c-b375-4db6-a64b-471f51e2428b"
+  },
+  "ugc": {
+    "file": "gen/out/ugc.mp4",
+    "model": "marketing_studio_video",
+    "credits": 40,
+    "job_id": "5b46bc73-ab9d-4472-9d4f-6f21dd7a7e40",
+    "prompt": "Mode: UGC, 8 s, 9:16, product = the imported Pure Orange Juice.\n\nCasual UGC selfie video in a sunny home kitchen: a friendly young woman holds up the Pure Orange Juice bottle, takes a sip, smiles and says: Okay, this tastes like actual oranges. I'm hooked.\n\nThe presenter, her voice and the product are all generated; the brand is made up."
   }
 }

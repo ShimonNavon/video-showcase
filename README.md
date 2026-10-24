@@ -29,9 +29,11 @@ behind a Cloudflare Tunnel.
 | 11 | Produce | **Code-rendered video** | Motion graphics written as HTML and rendered frame by frame: titles, charts, captions, this site's reel. | HyperFrames |
 | 12 | Produce | **Music, sound & covers** | The pieces around the video: an original soundtrack, sound effects and a thumbnail that gets the click. | Seed Audio, Nano Banana Pro |
 
-**Spend:** 22 Higgsfield jobs, 78.1 credits in total (Starter plan, about $5.50 of a $19 month).
+**Spend:** 42 Higgsfield jobs, 232.3 credits in total including one discarded retry (Starter plan: $19 for 270 credits).
 
-Every clip's model, prompt and credit cost is logged in [`gen/manifest.json`](gen/manifest.json).
+Every option chip on a card opens its own example: 39 of the 45 have one. Four were left out on purpose and say why on hover: draw-to-video (26 credits), FPS boost (20), unboxing (28) and Soul ID (needs real photos of a person). The UGC ad is for a made-up product; its "import from URL" step reads [a demo product page](https://video-studio.navonsimon.com/demo-product.html) on this site.
+
+Every clip's model, prompt and credit cost is logged in [`gen/manifest.json`](gen/manifest.json); [`gen/build_examples.py`](gen/build_examples.py) turns it into the per-chip `site/examples.js`.
 
 ## How it was made
 
@@ -53,7 +55,7 @@ Every clip's model, prompt and credit cost is logged in [`gen/manifest.json`](ge
 site/          index.html (the page) + data.js (the capability list and each demo)
 media/         transcoded clips and posters served at /media/
 gen/           batch.json, run.py, manifest.json
-reel/          HyperFrames projects (showreel, vertical cut, code demo)
+reel/          HyperFrames projects (showreel, vertical cut, code demo, subtitled explainer)
 deploy/        k8s manifest, nginx config, deploy script
 ```
 
@@ -65,6 +67,7 @@ python3 gen/run.py                # generate everything still missing
 python3 gen/run.py hero           # (re)generate one job; delete its manifest entry first
 python3 gen/run.py --refetch edit # re-download a finished job by its job id
 python3 gen/publish.py            # transcode gen/out/ into web-sized media/ (720p MP4 + JPG posters)
+python3 gen/build_examples.py     # rebuild site/examples.js (one viewer entry per option chip)
 cd reel/showreel && npx hyperframes render --output renders/showreel.mp4
 ./deploy/deploy.sh                # page + config
 ./deploy/deploy.sh media          # also sync media/ to the volume

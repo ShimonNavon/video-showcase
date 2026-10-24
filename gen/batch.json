@@ -1,6 +1,6 @@
 {
   "_note": "Generation batch. Stills run first (they feed later jobs). `needs` names a job whose output is an input. Costs are from `higgsfield generate cost` on 2026-10-24.",
-  "budget": 150,
+  "budget": 235,
   "jobs": [
     {
       "id": "hero",
@@ -259,6 +259,254 @@
       },
       "est": 0.1,
       "prompt": "Instrumental hype track for a 25-second social video: immediate punchy drum hit, driving electronic beat, quick risers between sections, ends on a hard stop; no vocals"
+    },
+    {
+      "id": "t2v-anime",
+      "cat": "text-to-video",
+      "model": "kling4_0",
+      "params": {
+        "duration": 5,
+        "resolution": "720p",
+        "aspect_ratio": "16:9"
+      },
+      "est": 2.5,
+      "prompt": "Anime style, hand-drawn cel animation: a girl on a bicycle races down a hillside road toward the sea at sunset, hair and scarf streaming in the wind, cherry blossom petals swirling, vivid Ghibli-like colours"
+    },
+    {
+      "id": "i2v-portrait",
+      "cat": "image-to-video",
+      "model": "kling4_0",
+      "needs": {
+        "start_image": "char-ref"
+      },
+      "params": {
+        "mode": "image-to-video",
+        "duration": 5,
+        "resolution": "1080p"
+      },
+      "est": 5,
+      "prompt": "She blinks, breathes, glances to the side, then looks back into the lens with a slight smile; soft hair movement, subtle natural motion"
+    },
+    {
+      "id": "i2v-turntable",
+      "cat": "image-to-video",
+      "model": "kling4_0",
+      "needs": {
+        "start_image": "ads"
+      },
+      "params": {
+        "mode": "image-to-video",
+        "duration": 5,
+        "resolution": "1080p"
+      },
+      "est": 5,
+      "prompt": "The bottle rotates slowly in place like a product turntable while orange slices and juice droplets float around it in slow motion"
+    },
+    {
+      "id": "reveal-a",
+      "cat": "frames",
+      "model": "gpt_image_2_5",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "est": 0.25,
+      "prompt": "A cluttered, dusty empty garage workshop with bare concrete walls, a single bulb, boxes and junk everywhere, wide shot, photograph"
+    },
+    {
+      "id": "reveal-b",
+      "cat": "frames",
+      "model": "gpt_image_2_5",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "est": 0.25,
+      "prompt": "The same garage transformed into a bright, cozy design studio: white walls, plants, a large wooden desk with a computer, warm lights, clean floor, same camera angle, wide shot, photograph"
+    },
+    {
+      "id": "reveal",
+      "cat": "frames",
+      "model": "kling_o3_flf",
+      "needs": {
+        "start_image": "reveal-a",
+        "end_image": "reveal-b"
+      },
+      "params": {
+        "duration": 5,
+        "sound": "off"
+      },
+      "est": 5,
+      "prompt": "Makeover reveal: the clutter clears away and the room transforms into the finished studio, smooth continuous transformation, locked-off camera"
+    },
+    {
+      "id": "ending-b",
+      "cat": "frames",
+      "model": "gpt_image_2_5",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "est": 0.25,
+      "prompt": "Photograph, morning window light: the same black ceramic cup with a gold rim on the same walnut table, now empty. Beside it lies a small handwritten note card. The only words on the card are: \"See you tomorrow\""
+    },
+    {
+      "id": "ending",
+      "cat": "frames",
+      "model": "kling_o3_flf",
+      "needs": {
+        "start_image": "i2v-still",
+        "end_image": "ending-b"
+      },
+      "params": {
+        "duration": 5,
+        "sound": "off"
+      },
+      "est": 5,
+      "prompt": "A hand lifts the cup, the steam fades, the cup is set back down empty and a handwritten note slides into frame beside it; the shot ends exactly on the final frame"
+    },
+    {
+      "id": "sfx-video",
+      "cat": "audio",
+      "model": "veo3_1_lite",
+      "params": {
+        "duration": 4,
+        "generate_audio": true,
+        "aspect_ratio": "16:9"
+      },
+      "est": 6,
+      "prompt": "Close-up slow motion: a wine glass falls from a kitchen counter and shatters on a tiled floor, shards scattering; crisp glass-breaking sound exactly on impact, quiet room tone"
+    },
+    {
+      "id": "choreo-src",
+      "cat": "motion",
+      "model": "kling4_0",
+      "params": {
+        "duration": 5,
+        "resolution": "720p",
+        "aspect_ratio": "16:9"
+      },
+      "est": 2.5,
+      "prompt": "Full-body shot of a street dancer performing an energetic hip-hop routine in an empty studio with a plain grey wall, camera static, the whole body always in frame"
+    },
+    {
+      "id": "choreo",
+      "cat": "motion",
+      "model": "kling3_0_motion_control",
+      "workflow": true,
+      "needs": {
+        "image_references": "clay-fox",
+        "video_references": "choreo-src"
+      },
+      "params": {
+        "mode": "std"
+      },
+      "est": 10,
+      "prompt": null
+    },
+    {
+      "id": "replace",
+      "cat": "motion",
+      "model": "hf_mult_replace_object_flash",
+      "needs": {
+        "image_references": "ads",
+        "video_references": "i2v"
+      },
+      "params": {
+        "resolution": "720p"
+      },
+      "est": 12,
+      "prompt": "Replace the coffee cup with the orange juice bottle from the reference image, keep the table, light and camera move"
+    },
+    {
+      "id": "restyle",
+      "cat": "editing",
+      "model": "kling_video_edit",
+      "needs": {
+        "video_references": "t2v-ocean"
+      },
+      "params": {
+        "mode": "std"
+      },
+      "est": 7.5,
+      "prompt": "Restyle the whole clip as a Van Gogh oil painting with thick swirling brushstrokes, keep the diver, the manta ray and the motion the same"
+    },
+    {
+      "id": "upscale",
+      "cat": "post",
+      "model": "video_upscale",
+      "needs": {
+        "video": "frames"
+      },
+      "params": {},
+      "est": 2,
+      "prompt": null
+    },
+    {
+      "id": "dub",
+      "cat": "post",
+      "model": "dubbing",
+      "workflow": true,
+      "needs": {
+        "video": "audio"
+      },
+      "params": {
+        "target_language": "spa"
+      },
+      "est": 18,
+      "prompt": null
+    },
+    {
+      "id": "voice",
+      "cat": "post",
+      "model": "voice_change",
+      "workflow": true,
+      "needs": {
+        "video": "audio"
+      },
+      "params": {
+        "voice_id": "57ccb351-84d7-54ba-afd4-26b566ca6023",
+        "voice_type": "preset"
+      },
+      "est": 1,
+      "prompt": null
+    },
+    {
+      "id": "ad-image",
+      "cat": "ads",
+      "model": "marketing_studio_image",
+      "needs": {
+        "image_references": "ads"
+      },
+      "params": {
+        "aspect_ratio": "4:5",
+        "resolution": "1k"
+      },
+      "est": 2,
+      "prompt": "Instagram product ad for this orange juice: the bottle on a sunny breakfast table, bold headline Squeezed This Morning, small price tag $4.99, clean modern layout"
+    },
+    {
+      "id": "explainer-video",
+      "cat": "explainers",
+      "model": "gemini_omni",
+      "needs": {
+        "image_references": "explainer"
+      },
+      "params": {
+        "duration": 8,
+        "aspect_ratio": "16:9"
+      },
+      "est": 24,
+      "prompt": "Animated explainer in exactly the warm paper-cut illustration style of the reference image: a seed in the soil sprouts, grows roots and leaves, and becomes a small tree as the sun rises. A warm friendly narrator says: Every big tree starts as a tiny seed. Give it water, light and time, and it grows."
+    },
+    {
+      "id": "sfx",
+      "cat": "sound",
+      "model": "seed_audio",
+      "params": {
+        "format": "mp3",
+        "sample_rate": 44100
+      },
+      "est": 0.1,
+      "prompt": "Sound effect: heavy wooden door creaks open slowly, then slams shut with an echo in a stone hallway"
     }
-  ]
+  ],
+  "_note2": "Round 2 (2026-10-24): one example per capability chip on the site. Skipped on cost: FPS boost, draw-to-video, unboxing."
 }

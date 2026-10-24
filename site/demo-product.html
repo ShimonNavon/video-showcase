@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pure Orange Juice · Demo Product</title>
+<meta name="description" content="Cold-pressed orange juice, 330 ml. A made-up product used to demonstrate importing a product from a URL into Higgsfield Marketing Studio.">
+<meta property="og:type" content="product">
+<meta property="og:title" content="Pure Orange Juice">
+<meta property="og:description" content="Cold-pressed orange juice from whole Valencia oranges. No added sugar, nothing from concentrate. 330 ml glass bottle.">
+<meta property="og:image" content="https://video-studio.navonsimon.com/media/ads.jpg">
+<meta property="product:price:amount" content="4.99">
+<meta property="product:price:currency" content="USD">
+<meta name="robots" content="noindex">
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "Product", "name": "Pure Orange Juice", "brand": {"@type": "Brand", "name": "Pure Orange"},
+ "description": "Cold-pressed orange juice from whole Valencia oranges. No added sugar, nothing from concentrate. 330 ml glass bottle.",
+ "image": ["https://video-studio.navonsimon.com/media/ads.jpg"],
+ "offers": {"@type": "Offer", "price": "4.99", "priceCurrency": "USD", "availability": "https://schema.org/InStock"}}
+</script>
+<style>
+  :root { --bg: #fbf7f0; --text: #1d1a16; --muted: #6d665c; --accent: #e8731a; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #14120f; --text: #f2ede4; --muted: #a59d90; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 system-ui, -apple-system, sans-serif; }
+  main { max-width: 1040px; margin: 0 auto; padding: 48px 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 40px; align-items: center; }
+  img { width: 100%; border-radius: 16px; display: block; }
+  .tag { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  h1 { font-size: clamp(36px, 5vw, 56px); line-height: 1.05; margin: 8px 0 16px; }
+  .price { font-size: 28px; font-weight: 600; color: var(--accent); margin: 16px 0; }
+  .note { margin-top: 32px; padding: 14px 16px; border-radius: 12px; background: rgba(232,115,26,.1); font-size: 14px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <img src="/media/ads.jpg" alt="Pure Orange Juice bottle bursting through a splash of orange slices">
+  <div>
+    <div class="tag">Pure Orange · Cold-pressed</div>
+    <h1>Pure Orange Juice</h1>
+    <p>Cold-pressed orange juice from whole Valencia oranges. No added sugar, nothing from concentrate. 330 ml glass bottle.</p>
+    <div class="price">$4.99</div>
+    <p class="note">This is a made-up product. The page exists so the showcase can demonstrate importing a product from a URL into Higgsfield Marketing Studio. Nothing here is for sale.</p>
+  </div>
+</main>
+</body>
+</html>

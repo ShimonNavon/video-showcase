@@ -1,0 +1,51 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    .grp { position: absolute; left: 0; right: 0; bottom: 80px; display: flex; justify-content: center; }
+    .box { max-width: 1560px; padding: 18px 30px; border-radius: 14px; background: rgba(10,10,12,.72); font: 600 54px/1.25 "Inter", sans-serif; color: #f2f0eb; text-align: center; }
+  </style>
+  <div id="root" data-composition-id="subs" data-width="1920" data-height="1080">
+    <div id="g0" class="clip grp" data-start="0.0" data-duration="3.296"><div class="box"><span id="w0">Every</span> <span id="w1">big</span> <span id="w2">tree</span> <span id="w3">starts</span> <span id="w4">as</span> <span id="w5">a</span> <span id="w6">tiny</span> <span id="w7">seed.</span></div></div>
+    <div id="g1" class="clip grp" data-start="3.296" data-duration="2.856"><div class="box"><span id="w8">Give</span> <span id="w9">it</span> <span id="w10">water,</span> <span id="w11">light</span> <span id="w12">and</span> <span id="w13">time,</span></div></div>
+    <div id="g2" class="clip grp" data-start="6.152" data-duration="1.848"><div class="box"><span id="w14">and</span> <span id="w15">it</span> <span id="w16">grows.</span></div></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Each word turns amber while it is spoken (Whisper word timings), then back.
+    tl.fromTo("#w0", { color: "#f2f0eb" }, { color: "#e8b25c", duration: 0.06 }, 0.000);
+    tl.to("#w0", { color: "#f2f0eb", duration: 0.06 }, 0.549);
+    tl.fromTo("#w1", { color: "#f2f0eb" }, { color: "#e8b25c", duration: 0.06 }, 0.549);
+    tl.to("#w1", { color: "#f2f0eb", duration: 0.06 }, 0.879);
+    tl.fromTo("#w2", { color: "#f2f0eb" }, { color: "#e8b25c", duration: 0.06 }, 0.879);
+    tl.to("#w2", { color: "#f2f0eb", duration: 0.06 }, 1.318);
+    tl.fromTo("#w3", { color: "#f2f0eb" }, { color: "#e8b25c", duration: 0.06 }, 1.318);
+    tl.to("#w3", { color: "#f2f0eb", duration: 0.06 }, 1.977);
+    tl.fromTo("#w4", { color: "#f2f0eb" }, { color: "#e8b25c", duration: 0.06 }, 1.977);
+    tl.to("#w4", { color: "#f2f0eb", duration: 0.06 }, 2.197);
+    tl.fromTo("#w5", { color: "#f2f0eb" }, { color: "#e8b25c", duration: 0.06 }, 2.197);
+    tl.to("#w5", { color: "#f2f0eb", duration: 0.06 }, 2.307);
+    tl.fromTo("#w6", { color: "#f2f0eb" }, { color: "#e8b25c", duration: 0.06 }, 2.307);
+    tl.to("#w6", { color: "#f2f0eb", duration: 0.06 }, 2.746);
+    tl.fromTo("#w7", { color: "#f2f0eb" }, { color: "#e8b25c", duration: 0.06 }, 2.746);
+    tl.to("#w7", { color: "#f2f0eb", duration: 0.06 }, 3.296);
+    tl.fromTo("#w8", { color: "#f2f0eb" }, { color: "#e8b25c", duration: 0.06 }, 3.296);
+    tl.to("#w8", { color: "#f2f0eb", duration: 0.06 }, 3.735);
+    tl.fromTo("#w9", { color: "#f2f0eb" }, { color: "#e8b25c", duration: 0.06 }, 3.735);
+    tl.to("#w9", { color: "#f2f0eb", duration: 0.06 }, 3.955);
+    tl.fromTo("#w10", { color: "#f2f0eb" }, { color: "#e8b25c", duration: 0.06 }, 3.955);
+    tl.to("#w10", { color: "#f2f0eb", duration: 0.06 }, 4.614);
+    tl.fromTo("#w11", { color: "#f2f0eb" }, { color: "#e8b25c", duration: 0.06 }, 4.614);
+    tl.to("#w11", { color: "#f2f0eb", duration: 0.06 }, 5.273);
+    tl.fromTo("#w12", { color: "#f2f0eb" }, { color: "#e8b25c", duration: 0.06 }, 5.273);
+    tl.to("#w12", { color: "#f2f0eb", duration: 0.06 }, 5.602);
+    tl.fromTo("#w13", { color: "#f2f0eb" }, { color: "#e8b25c", duration: 0.06 }, 5.602);
+    tl.to("#w13", { color: "#f2f0eb", duration: 0.06 }, 6.152);
+    tl.fromTo("#w14", { color: "#f2f0eb" }, { color: "#e8b25c", duration: 0.06 }, 6.152);
+    tl.to("#w14", { color: "#f2f0eb", duration: 0.06 }, 6.481);
+    tl.fromTo("#w15", { color: "#f2f0eb" }, { color: "#e8b25c", duration: 0.06 }, 6.481);
+    tl.to("#w15", { color: "#f2f0eb", duration: 0.06 }, 6.701);
+    tl.fromTo("#w16", { color: "#f2f0eb" }, { color: "#e8b25c", duration: 0.06 }, 6.701);
+    tl.to("#w16", { color: "#f2f0eb", duration: 0.06 }, 7.360);
+    window.__timelines["subs"] = tl;
+  </script>
+</template>

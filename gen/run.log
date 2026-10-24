@@ -56,3 +56,43 @@ spent 50.95 credits; failed: hero, audio, i2v, motion, post-bg
 ✓ motion       gen/out/motion.mp4
 ✓ post-bg      gen/out/post-bg.mp4
 spent 82.10 credits; failed: none
+19 jobs, projected spend 186.45 / 235 credits
+→ t2v-anime    kling4_0
+→ i2v-portrait kling4_0
+→ i2v-turntable kling4_0
+✓ t2v-anime    gen/out/t2v-anime.mp4
+→ reveal-a     gpt_image_2_5
+✓ i2v-portrait gen/out/i2v-portrait.mp4
+→ reveal-b     gpt_image_2_5
+→ ending-b     gpt_image_2_5
+→ sfx-video    veo3_1_lite
+→ choreo-src   kling4_0
+→ replace      hf_mult_replace_object_flash
+→ restyle      kling_video_edit
+✓ i2v-turntable gen/out/i2v-turntable.mp4
+✓ reveal-a     gen/out/reveal-a.png
+✓ reveal-b     gen/out/reveal-b.png
+✓ ending-b     gen/out/ending-b.png
+✓ sfx-video    gen/out/sfx-video.mp4
+✓ choreo-src   gen/out/choreo-src.mp4
+→ upscale      video_upscale
+→ dub          dubbing
+✓ replace      gen/out/replace.mp4
+✓ restyle      gen/out/restyle.mp4
+→ voice        voice_change
+✓ upscale      gen/out/upscale.mp4
+→ ad-image     marketing_studio_image
+✓ dub          gen/out/dub.mp4
+→ explainer-video gemini_omni
+✓ voice        gen/out/voice.mp4
+→ sfx          seed_audio
+✓ ad-image     gen/out/ad-image.png
+✓ explainer-video gen/out/explainer-video.mp4
+✓ sfx          gen/out/sfx.mp3
+→ reveal       kling_o3_flf
+→ ending       kling_o3_flf
+→ choreo       kling3_0_motion_control
+✓ reveal       gen/out/reveal.mp4
+✓ ending       gen/out/ending.mp4
+✓ choreo       gen/out/choreo.mp4
+spent 186.45 credits; failed: none
