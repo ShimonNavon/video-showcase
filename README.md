@@ -31,7 +31,7 @@ behind a Cloudflare Tunnel.
 
 **Spend:** 42 Higgsfield jobs, 232.3 credits in total including one discarded retry (Starter plan: $19 for 270 credits).
 
-Every option chip on a card opens its own example: 39 of the 45 have one. Four were left out on purpose and say why on hover: draw-to-video (26 credits), FPS boost (20), unboxing (28) and Soul ID (needs real photos of a person). The UGC ad is for a made-up product; its "import from URL" step reads [a demo product page](https://video-studio.navonsimon.com/demo-product.html) on this site.
+Every option chip on a card opens its own example: 39 of the 43 have one. Four were left out on purpose and say why on hover: draw-to-video (26 credits), FPS boost (20), unboxing (28) and Soul ID (needs real photos of a person). The UGC ad is for a made-up product; its "import from URL" step reads [a demo product page](https://video-studio.navonsimon.com/demo-product.html) on this site.
 
 Every clip's model, prompt and credit cost is logged in [`gen/manifest.json`](gen/manifest.json); [`gen/build_examples.py`](gen/build_examples.py) turns it into the per-chip `site/examples.js`.
 
