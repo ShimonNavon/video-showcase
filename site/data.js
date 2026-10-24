@@ -4,7 +4,7 @@ window.SHOWCASE = {
   // Totals across every Higgsfield job (gen/manifest.json), including clips used only in the reels.
   totals: { clips: 12, credits: 78.1 },
   hero: { video: 'hero-loop.mp4', poster: 'hero.jpg' },
-  reel: { video: 'reel.mp4', poster: 'reel.jpg', length: '40 s', credits: 0,
+  reel: { video: 'reel-v2.mp4', poster: 'reel.jpg', length: '40 s', credits: 0,
     prompt: 'Every clip on this page, cut to one bar each of a Seed Audio track and titled in HyperFrames.' },
   categories: [
     { id: 'text-to-video', group: 'Generate', title: 'Text → video',

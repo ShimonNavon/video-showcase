@@ -1,6 +1,6 @@
 # None of this was filmed
 
-**Live: [video.navonsimon.com](https://video.navonsimon.com/)**
+**Live: [video-studio.navonsimon.com](https://video-studio.navonsimon.com/)**
 
 A showcase of what AI video generation can do in 2026, with a real generated clip for each of twelve
 capabilities. Claude directed every shot and wrote the prompts, the clips were generated with the
@@ -8,7 +8,7 @@ capabilities. Claude directed every shot and wrote the prompts, the clips were g
 [HyperFrames](https://hyperframes.heygen.com), and the site runs on a home Kubernetes cluster
 behind a Cloudflare Tunnel.
 
-[![The showreel](docs/reel.gif)](https://video.navonsimon.com/)
+[![The showreel](docs/reel.gif)](https://video-studio.navonsimon.com/)
 
 *Seven seconds of the 40-second showreel. Every frame was generated; the cut and titles are HTML rendered to video.*
 
