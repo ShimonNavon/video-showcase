@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Instrument Serif"; src: url("assets/fonts/InstrumentSerif.woff2") format("woff2"); }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #0a0a0c; }
+      #root { position: relative; width: 100%; height: 100%; color: #f2f0eb; font-family: "Inter", sans-serif; }
+      .scene { position: absolute; inset: 0; }
+      .eyebrow { position: absolute; left: 160px; top: 150px; font: 500 30px/1 "JetBrains Mono", monospace; letter-spacing: .14em; text-transform: uppercase; color: #e8b25c; }
+      .title { position: absolute; left: 160px; top: 210px; font: 400 128px/1 "Instrument Serif", serif; letter-spacing: -.02em; }
+      .title em { font-style: normal; color: #e8b25c; }
+      .prompt { position: absolute; left: 160px; top: 370px; max-width: 1500px; font: 400 30px/1.45 "JetBrains Mono", monospace; color: rgba(242,240,235,.7); }
+      .viz { position: absolute; left: 160px; right: 160px; bottom: 150px; height: 360px; display: flex; align-items: flex-end; gap: 10px; }
+      .bar { flex: 1; height: 100%; border-radius: 6px 6px 2px 2px; background: linear-gradient(to top, #e8b25c, #ff6a3d); transform-origin: bottom center; }
+      #sfx-bg { position: absolute; inset: 0; width: 1920px; height: 1080px; object-fit: cover; opacity: .28; }
+      #thumb-wrap { position: absolute; left: 260px; top: 90px; width: 1400px; height: 788px; border-radius: 22px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.6); }
+      #thumb { width: 100%; height: 100%; object-fit: cover; }
+      #thumb-cap { position: absolute; left: 0; right: 0; bottom: 70px; text-align: center; font: 400 72px/1 "Instrument Serif", serif; }
+      #thumb-cap em { font-style: normal; color: #e8b25c; }
+      #thumb-model { position: absolute; left: 0; right: 0; bottom: 26px; text-align: center; font: 500 30px/1 "JetBrains Mono", monospace; color: rgba(242,240,235,.6); }
+    </style>
+  </head>
+  <body>
+    <!-- Card 12 demo: the Seed Audio music and door sound effect drawn as live bars, then the Nano Banana Pro thumbnail. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="12" data-width="1920" data-height="1080">
+      <div id="music-scene" class="clip scene" data-start="0" data-duration="6">
+        <div class="eyebrow" id="m-eye">12 · Music from a prompt · Seed Audio</div>
+        <div class="title" id="m-title">An original <em>soundtrack.</em></div>
+        <div class="prompt" id="m-prompt">“Cinematic trailer music: a pulsing synth heartbeat builds with taut strings and punchy percussion.”</div>
+        <div class="viz" id="m-viz">
+          <i id="m0" class="bar"></i>
+          <i id="m1" class="bar"></i>
+          <i id="m2" class="bar"></i>
+          <i id="m3" class="bar"></i>
+          <i id="m4" class="bar"></i>
+          <i id="m5" class="bar"></i>
+          <i id="m6" class="bar"></i>
+          <i id="m7" class="bar"></i>
+          <i id="m8" class="bar"></i>
+          <i id="m9" class="bar"></i>
+          <i id="m10" class="bar"></i>
+          <i id="m11" class="bar"></i>
+          <i id="m12" class="bar"></i>
+          <i id="m13" class="bar"></i>
+          <i id="m14" class="bar"></i>
+          <i id="m15" class="bar"></i>
+          <i id="m16" class="bar"></i>
+          <i id="m17" class="bar"></i>
+          <i id="m18" class="bar"></i>
+          <i id="m19" class="bar"></i>
+          <i id="m20" class="bar"></i>
+          <i id="m21" class="bar"></i>
+          <i id="m22" class="bar"></i>
+          <i id="m23" class="bar"></i>
+          <i id="m24" class="bar"></i>
+          <i id="m25" class="bar"></i>
+          <i id="m26" class="bar"></i>
+          <i id="m27" class="bar"></i>
+          <i id="m28" class="bar"></i>
+          <i id="m29" class="bar"></i>
+          <i id="m30" class="bar"></i>
+          <i id="m31" class="bar"></i>
+          <i id="m32" class="bar"></i>
+          <i id="m33" class="bar"></i>
+          <i id="m34" class="bar"></i>
+          <i id="m35" class="bar"></i>
+          <i id="m36" class="bar"></i>
+          <i id="m37" class="bar"></i>
+          <i id="m38" class="bar"></i>
+          <i id="m39" class="bar"></i>
+          <i id="m40" class="bar"></i>
+          <i id="m41" class="bar"></i>
+          <i id="m42" class="bar"></i>
+          <i id="m43" class="bar"></i>
+          <i id="m44" class="bar"></i>
+          <i id="m45" class="bar"></i>
+          <i id="m46" class="bar"></i>
+          <i id="m47" class="bar"></i>
+          <i id="m48" class="bar"></i>
+          <i id="m49" class="bar"></i>
+          <i id="m50" class="bar"></i>
+          <i id="m51" class="bar"></i>
+          <i id="m52" class="bar"></i>
+          <i id="m53" class="bar"></i>
+          <i id="m54" class="bar"></i>
+          <i id="m55" class="bar"></i>
+        </div>
+      </div>
+      <div id="sfx-scene" class="clip scene" data-start="6" data-duration="3.6">
+        <img id="sfx-bg" src="assets/reveal-a.jpg" alt="">
+        <div class="eyebrow" id="s-eye">12 · Sound effects · Seed Audio</div>
+        <div class="title" id="s-title">Every <em>creak</em> and slam.</div>
+        <div class="prompt" id="s-prompt">“A heavy wooden door creaks open slowly, then slams shut with an echo.”</div>
+        <div class="viz" id="s-viz">
+          <i id="s0" class="bar"></i>
+          <i id="s1" class="bar"></i>
+          <i id="s2" class="bar"></i>
+          <i id="s3" class="bar"></i>
+          <i id="s4" class="bar"></i>
+          <i id="s5" class="bar"></i>
+          <i id="s6" class="bar"></i>
+          <i id="s7" class="bar"></i>
+          <i id="s8" class="bar"></i>
+          <i id="s9" class="bar"></i>
+          <i id="s10" class="bar"></i>
+          <i id="s11" class="bar"></i>
+          <i id="s12" class="bar"></i>
+          <i id="s13" class="bar"></i>
+          <i id="s14" class="bar"></i>
+          <i id="s15" class="bar"></i>
+          <i id="s16" class="bar"></i>
+          <i id="s17" class="bar"></i>
+          <i id="s18" class="bar"></i>
+          <i id="s19" class="bar"></i>
+          <i id="s20" class="bar"></i>
+          <i id="s21" class="bar"></i>
+          <i id="s22" class="bar"></i>
+          <i id="s23" class="bar"></i>
+          <i id="s24" class="bar"></i>
+          <i id="s25" class="bar"></i>
+          <i id="s26" class="bar"></i>
+          <i id="s27" class="bar"></i>
+          <i id="s28" class="bar"></i>
+          <i id="s29" class="bar"></i>
+          <i id="s30" class="bar"></i>
+          <i id="s31" class="bar"></i>
+          <i id="s32" class="bar"></i>
+          <i id="s33" class="bar"></i>
+          <i id="s34" class="bar"></i>
+          <i id="s35" class="bar"></i>
+          <i id="s36" class="bar"></i>
+          <i id="s37" class="bar"></i>
+          <i id="s38" class="bar"></i>
+          <i id="s39" class="bar"></i>
+          <i id="s40" class="bar"></i>
+          <i id="s41" class="bar"></i>
+          <i id="s42" class="bar"></i>
+          <i id="s43" class="bar"></i>
+          <i id="s44" class="bar"></i>
+          <i id="s45" class="bar"></i>
+          <i id="s46" class="bar"></i>
+          <i id="s47" class="bar"></i>
+          <i id="s48" class="bar"></i>
+          <i id="s49" class="bar"></i>
+          <i id="s50" class="bar"></i>
+          <i id="s51" class="bar"></i>
+          <i id="s52" class="bar"></i>
+          <i id="s53" class="bar"></i>
+          <i id="s54" class="bar"></i>
+          <i id="s55" class="bar"></i>
+        </div>
+      </div>
+      <div id="thumb-scene" class="clip scene" data-start="9.6" data-duration="2.4">
+        <div id="thumb-wrap"><img id="thumb" src="assets/thumb.jpg" alt=""></div>
+        <div id="thumb-cap">A thumbnail that gets the <em>click.</em></div>
+        <div id="thumb-model">Nano Banana Pro</div>
+      </div>
+      <audio id="music" class="clip" src="assets/music.mp3" data-start="0" data-duration="6" data-media-start="31.0" data-volume="1" data-fade-out="0.25" data-track-index="8"></audio>
+      <audio id="sfx" class="clip" src="assets/sfx.mp3" data-start="6" data-duration="3.53" data-volume="1.2" data-track-index="9"></audio>
+      <audio id="music-tail" class="clip" src="assets/music.mp3" data-start="9.6" data-duration="2.4" data-media-start="30" data-volume="0.7" data-fade-in="0.2" data-fade-out="0.8" data-track-index="10"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const FPS = 30, BARS = 56;
+      // Loudness per frame (RMS, normalised), measured from the audio files at build time.
+      const MUSIC = [0.379, 0.417, 0.423, 0.426, 0.438, 0.382, 0.371, 0.323, 0.635, 0.805, 0.705, 0.758, 0.537, 0.584, 0.712, 0.427, 0.49, 0.478, 0.487, 0.61, 0.421, 0.514, 0.558, 0.663, 0.718, 0.477, 0.545, 0.624, 0.762, 0.544, 0.502, 0.557, 0.511, 0.523, 0.527, 0.597, 0.629, 0.817, 0.69, 0.606, 0.572, 0.544, 0.504, 0.53, 0.492, 0.503, 0.717, 0.628, 0.556, 0.667, 0.738, 0.627, 0.618, 0.592, 0.574, 0.584, 0.635, 0.718, 0.589, 0.531, 0.767, 0.565, 0.704, 0.753, 0.556, 0.708, 0.676, 0.841, 0.785, 0.753, 0.668, 0.769, 0.664, 0.719, 0.645, 0.668, 0.787, 0.666, 0.608, 0.813, 0.591, 0.664, 0.809, 0.766, 0.65, 0.591, 0.675, 0.903, 0.789, 0.716, 0.9, 0.586, 0.686, 0.754, 0.627, 0.605, 0.584, 0.607, 0.578, 0.605, 0.533, 0.392, 0.386, 0.371, 0.388, 0.498, 0.486, 0.505, 0.681, 0.68, 0.591, 0.667, 0.62, 0.578, 0.642, 0.688, 0.561, 0.698, 0.645, 0.715, 0.805, 1.0, 0.817, 0.953, 0.785, 0.671, 0.777, 0.791, 0.864, 0.866, 0.708, 0.619, 0.698, 0.716, 0.815, 0.625, 0.667, 0.805, 0.693, 0.796, 0.614, 0.649, 0.731, 0.801, 0.609, 0.7, 0.696, 0.666, 0.671, 0.618, 0.762, 0.508, 0.736, 0.742, 0.738, 0.74, 0.712, 0.734, 0.78, 0.851, 0.548, 0.533, 0.695, 0.634, 0.554, 0.589, 0.424, 0.433, 0.4, 0.393, 0.44, 0.49, 0.557, 0.629, 0.601, 0.468, 0.384, 0.419, 0.415, 0.352];
+      const SFX = [0.0, 0.0, 0.0, 0.0, 0.002, 0.004, 0.006, 0.011, 0.015, 0.017, 0.017, 0.019, 0.021, 0.027, 0.025, 0.023, 0.021, 0.023, 0.019, 0.019, 0.019, 0.023, 0.019, 0.017, 0.013, 0.053, 0.017, 0.021, 0.066, 0.023, 0.07, 0.036, 0.066, 0.049, 0.034, 0.091, 0.036, 0.074, 0.04, 0.042, 0.053, 0.066, 0.165, 0.545, 0.679, 0.725, 0.742, 0.985, 1.0, 0.958, 0.928, 0.727, 0.56, 0.706, 0.579, 0.416, 0.514, 0.389, 0.26, 0.218, 0.203, 0.188, 0.252, 0.199, 0.163, 0.137, 0.097, 0.106, 0.078, 0.068, 0.072, 0.061, 0.074, 0.072, 0.063, 0.038, 0.059, 0.042, 0.044, 0.038, 0.034, 0.051, 0.03, 0.038, 0.036, 0.032, 0.03, 0.03, 0.025, 0.023, 0.017, 0.013, 0.021, 0.019, 0.017, 0.013, 0.017, 0.011, 0.013, 0.008, 0.008, 0.006, 0.0, 0.0, 0.0];
+      // A fixed spectrum shape so the bars read as a visualizer: louder in the middle, ragged at the edges.
+      const shape = Array.from({ length: BARS }, (_, i) => 0.35 + 0.65 * Math.sin(Math.PI * (i + 0.5) / BARS) * (0.75 + 0.25 * Math.abs(Math.sin(i * 12.9898))));
+      function drive(prefix, env, start, dur) {
+        const bars = Array.from({ length: BARS }, (_, i) => document.getElementById(prefix + i));
+        const p = { t: 0 };
+        tl.fromTo(p, { t: 0 }, { t: dur, duration: dur, ease: "none", onUpdate: () => {
+          const f = Math.min(env.length - 1, Math.floor(p.t * FPS));
+          bars.forEach((b, i) => {
+            const wobble = 0.8 + 0.2 * Math.sin(p.t * 9 + i * 0.7);
+            gsap.set(b, { scaleY: Math.max(0.03, env[f] * shape[i] * wobble) });
+          });
+        } }, start);
+      }
+      drive("m", MUSIC, 0, 6);
+      drive("s", SFX, 6, 3.5);
+      // Text: eyebrow and title on screen from frame 0 (the thumbnail); the prompt follows.
+      tl.fromTo("#m-prompt", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.4);
+      tl.to("#music-scene > div:not(.viz)", { opacity: 0, filter: "blur(8px)", duration: 0.16, ease: "power3.in" }, 5.8);
+      tl.fromTo("#s-title", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 6.05);
+      tl.fromTo("#s-eye, #s-prompt", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 6.1);
+      tl.fromTo("#sfx-bg", { scale: 1.08 }, { scale: 1, duration: 3.6, ease: "power2.out" }, 6);
+      tl.fromTo("#thumb-wrap", { scale: 1.12, opacity: 0, filter: "blur(10px)" }, { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "expo.out" }, 9.6);
+      tl.fromTo("#thumb-cap", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 9.9);
+      tl.fromTo("#thumb-model", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 9.9);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

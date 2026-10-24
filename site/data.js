@@ -57,6 +57,6 @@ window.SHOWCASE = {
     { id: 'sound', group: 'Produce', title: 'Music, sound & covers',
       blurb: 'The pieces around the video: an original soundtrack, sound effects and a thumbnail that gets the click.',
       caps: [["Music from a prompt", "music"], ["Sound effects", "sfx"], ["YouTube thumbnails & covers", "thumb"]],
-      models: ['Seed Audio', 'Nano Banana Pro'], demo: {"poster": "thumb.jpg", "model": "Nano Banana Pro · Seed Audio 1.0", "credits": 4.6, "prompt": "Thumbnail: YouTube thumbnail: a surprised young creator pointing at a giant glowing film reel exploding with colourful video clips, bold text \"NOT FILMED\", high contrast, punchy colours, clean composition\n\nBoth reels are scored with Seed Audio: Instrumental cinematic trailer music, 40 seconds: a pulsing low synth heartbeat builds with taut strings, punchy percussion hits, rising to a bright triumphant final chord; modern, energetic, no vocals"} },
+      models: ['Seed Audio', 'Nano Banana Pro'], demo: {"video": "sound-demo.mp4", "poster": "sound-demo.jpg", "model": "Seed Audio 1.0 · Nano Banana Pro · HyperFrames", "credits": 2.6, "length": "12 s", "prompt": "The two Seed Audio pieces drawn as live loudness bars (music, then the door sound effect), ending on the Nano Banana Pro thumbnail. Each chip below opens the original file with its prompt."} },
   ],
 };
