@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Instrument Serif";
+        src: url("assets/fonts/InstrumentSerif.woff2") format("woff2");
+      }
+      :root {
+        --ground: #0a0a0c;
+        --ink: #f2f0eb;
+        --muted: #8b8994;
+        --faint: #3a3942;
+        --accent: #e8b25c;
+        --serif: "Instrument Serif", serif;
+        --sans: "Inter", sans-serif;
+        --mono: "JetBrains Mono", monospace;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--ground); }
+      #root { position: relative; width: 100%; height: 100%; color: var(--ink); font-family: var(--sans); }
+
+      /* Beat 1: the claim */
+      #claim { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 200px; }
+      #claim-eyebrow { font: 500 30px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-bottom: 40px; }
+      .claim-line { font: 400 132px/1.02 var(--serif); letter-spacing: -.02em; }
+      .claim-line span { display: inline-block; }
+      .claim-line em { font-style: normal; color: var(--accent); }
+
+      /* Beat 2: the chart */
+      #chart { position: absolute; inset: 0; padding: 150px 200px 0; }
+      #chart-title { font: 400 72px/1.05 var(--serif); margin-bottom: 18px; }
+      #chart-sub { font: 400 30px/1.4 var(--sans); color: var(--muted); margin-bottom: 64px; }
+      .row { display: grid; grid-template-columns: 360px 1fr 150px; align-items: center; gap: 32px; height: 104px; }
+      .label { font: 500 30px/1 var(--sans); color: var(--muted); }
+      .track { position: relative; height: 44px; }
+      .bar { position: absolute; left: 0; top: 0; height: 100%; border-radius: 6px; background: var(--faint); transform-origin: left center; }
+      .value { font: 500 34px/1 var(--mono); color: var(--muted); text-align: right; font-variant-numeric: tabular-nums; }
+      .row.hi .label, .row.hi .value { color: var(--ink); }
+      .row.hi .bar { background: var(--accent); }
+      #note { position: absolute; left: 820px; top: 852px; font: 400 44px/1.1 var(--serif); color: var(--accent); white-space: nowrap; }
+      #source { position: absolute; left: 200px; bottom: 70px; font: 400 28px/1 var(--mono); color: #7a7980; letter-spacing: .04em; }
+
+      /* Beat 3: sign-off */
+      #outro { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+      #outro-line { font: 400 120px/1 var(--serif); letter-spacing: -.02em; }
+      #outro-line em { font-style: normal; color: var(--accent); }
+      #outro-sub { margin-top: 36px; font: 500 30px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="11" data-width="1920" data-height="1080">
+
+      <div id="claim" class="clip" data-start="0" data-duration="2.6" data-track-index="1">
+        <div id="claim-eyebrow">Code-rendered video</div>
+        <div class="claim-line" id="claim-1"><span>Same</span> <span>five</span> <span>seconds.</span></div>
+        <div class="claim-line" id="claim-2"><span>A</span> <span><em>7×</em></span> <span>price</span> <span>spread.</span></div>
+      </div>
+
+      <div id="chart" class="clip" data-start="2.6" data-duration="5.6" data-track-index="2">
+        <h2 id="chart-title">Credits for one 5-second clip</h2>
+        <p id="chart-sub">Higgsfield quotes for the models behind this site</p>
+        <div class="row" id="r1"><span class="label">Seedance 2.5</span><div class="track"><div class="bar" style="width:100%"></div></div><span class="value" data-v="35">0</span></div>
+        <div class="row" id="r2"><span class="label">Seedance 2.0</span><div class="track"><div class="bar" style="width:64.3%"></div></div><span class="value" data-v="22.5">0</span></div>
+        <div class="row" id="r3"><span class="label">Kling 3.0 Turbo</span><div class="track"><div class="bar" style="width:21.4%"></div></div><span class="value" data-v="7.5">0</span></div>
+        <div class="row" id="r4"><span class="label">Kling 3.0 Omni</span><div class="track"><div class="bar" style="width:17.9%"></div></div><span class="value" data-v="6.25">0</span></div>
+        <div class="row hi" id="r5"><span class="label">Kling 4.0</span><div class="track"><div class="bar" style="width:14.3%"></div></div><span class="value" data-v="5">0</span></div>
+        <div id="note">← 1080p for a seventh of the price</div>
+        <div id="source">Source: higgsfield generate cost, 24 Oct 2026</div>
+      </div>
+
+      <div id="outro" class="clip" data-start="8.2" data-duration="2.8" data-track-index="3">
+        <div id="outro-line">Rendered from <em>HTML.</em></div>
+        <div id="outro-sub">Frame by frame · HyperFrames</div>
+      </div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+
+      // Beat 1: line two blurs in word by word, 0.067 s apart.
+      // Frame 0 is the thumbnail: the eyebrow and first line are already on screen.
+      tl.fromTo("#claim-2 span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.067, ease: "power4.out" }, 0.5);
+      tl.to("#claim > *", { opacity: 0, filter: "blur(8px)", duration: 0.2, stagger: 0.04, ease: "power3.in" }, 2.3);
+
+      // Beat 2: frame, then bars in reading order, values counting with them, then one annotation.
+      tl.fromTo("#chart-title", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 2.65);
+      tl.fromTo("#chart-sub", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 2.85);
+      tl.fromTo(".label", { opacity: 0 }, { opacity: 1, duration: 0.3, stagger: 0.06, ease: "power2.out" }, 3.0);
+      tl.fromTo(".bar", { scaleX: 0 }, { scaleX: 1, duration: 1.3, stagger: 0.08, ease: "expo.out" }, 3.2);
+      document.querySelectorAll(".value").forEach((el, i) => {
+        const v = parseFloat(el.dataset.v), o = { n: 0 };
+        tl.fromTo(o, { n: 0 }, { n: v, duration: 1.3, ease: "expo.out",
+          onUpdate: () => { el.textContent = (v % 1 ? o.n.toFixed(2).replace(/0$/, "") : Math.round(o.n)); } }, 3.2 + i * 0.08);
+      });
+      tl.fromTo("#source", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 3.6);
+      tl.fromTo("#r1, #r2, #r3, #r4", { opacity: 1 }, { opacity: 0.45, duration: 0.4, ease: "power2.inOut" }, 5.2);
+      tl.fromTo("#note", { opacity: 0, x: -24, filter: "blur(6px)" }, { opacity: 1, x: 0, filter: "blur(0px)", duration: 0.5, ease: "expo.out" }, 5.3);
+      tl.to("#chart > *", { opacity: 0, filter: "blur(8px)", duration: 0.22, stagger: 0.02, ease: "power3.in" }, 7.85);
+
+      // Beat 3: one line, held dead still.
+      tl.fromTo("#outro-line", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 8.25);
+      tl.fromTo("#outro-sub", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 8.5);
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

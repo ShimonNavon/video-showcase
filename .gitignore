@@ -1,0 +1,6 @@
+gen/out/
+.DS_Store
+reel/*/renders/
+node_modules/
+reel/*/node_modules/
+reel/*/.hyperframes/

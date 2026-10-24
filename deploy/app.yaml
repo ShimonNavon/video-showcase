@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Namespace
+metadata: {name: video-showcase}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata: {name: media, namespace: video-showcase}
+spec:
+  accessModes: [ReadWriteOnce]
+  storageClassName: local-path
+  resources: {requests: {storage: 5Gi}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: web, namespace: video-showcase}
+spec:
+  replicas: 1
+  strategy: {type: Recreate}
+  selector: {matchLabels: {app: video-showcase}}
+  template:
+    metadata: {labels: {app: video-showcase}}
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.27.5-alpine
+        ports: [{containerPort: 80}]
+        resources: {requests: {cpu: 10m, memory: 16Mi}, limits: {cpu: 500m, memory: 128Mi}}
+        readinessProbe: {httpGet: {path: /, port: 80}}
+        volumeMounts:
+        - {name: site, mountPath: /usr/share/nginx/html, readOnly: true}
+        - {name: media, mountPath: /media}
+        - {name: nginx-conf, mountPath: /etc/nginx/conf.d/default.conf, subPath: default.conf, readOnly: true}
+      volumes:
+      - {name: site, configMap: {name: site}}
+      - {name: media, persistentVolumeClaim: {claimName: media}}
+      - {name: nginx-conf, configMap: {name: nginx-conf}}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: web, namespace: video-showcase}
+spec:
+  type: NodePort
+  selector: {app: video-showcase}
+  ports: [{port: 80, targetPort: 80, nodePort: 30101}]

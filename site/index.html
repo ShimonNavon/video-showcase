@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>None of This Was Filmed</title>
+<meta name="description" content="A showcase of AI video generation: twelve capabilities, each with a real clip, made with Higgsfield and HyperFrames.">
+<meta property="og:title" content="None of this was filmed.">
+<meta property="og:description" content="Twelve AI video capabilities, each shown with a real generated clip.">
+<meta property="og:image" content="https://video.navonsimon.com/media/og.jpg">
+<meta name="theme-color" content="#0a0a0c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0c;
+    --surface: #131317;
+    --surface-2: #1b1b21;
+    --line: #26262e;
+    --text: #f2f0eb;
+    --muted: #9a98a3;
+    --faint: #5f5d68;
+    --accent: #e8b25c;
+    --accent-2: #ff6a3d;
+    --radius: 14px;
+    --gutter: clamp(16px, 4vw, 48px);
+    --max: 1280px;
+    --serif: 'Instrument Serif', Georgia, serif;
+    --sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, monospace;
+    --ease: cubic-bezier(.2, .7, .2, 1);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 400 16px/1.55 var(--sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: inherit; }
+  img, video { display: block; max-width: 100%; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* Top bar */
+  .bar { position: fixed; inset: 0 0 auto; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px var(--gutter); background: linear-gradient(var(--bg), transparent); }
+  .mark { font: 500 13px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); text-decoration: none; }
+  .mark b { color: var(--accent); font-weight: 500; }
+  .bar nav { display: flex; gap: 20px; }
+  .bar nav a { font-size: 14px; color: var(--muted); text-decoration: none; transition: color .2s; }
+  .bar nav a:hover { color: var(--text); }
+
+  /* Hero */
+  .hero { position: relative; min-height: 100svh; display: grid; align-items: end; overflow: hidden; isolation: isolate; }
+  .hero-media { position: absolute; inset: 0; z-index: -2; }
+  .hero-media video, .hero-media img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-media .ph { width: 100%; height: 100%; }
+  .hero::after { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, var(--bg) 4%, rgba(10,10,12,.55) 45%, rgba(10,10,12,.15) 75%, rgba(10,10,12,.6)); }
+  .hero .wrap { width: 100%; padding-bottom: clamp(48px, 9vh, 112px); }
+  .eyebrow { font: 500 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: 0 0 20px; }
+  h1 { font: 400 clamp(52px, 9.5vw, 148px)/.92 var(--serif); letter-spacing: -.02em; margin: 0; max-width: 11ch; }
+  h1 em { color: var(--accent); }
+  .lede { font-size: clamp(17px, 1.6vw, 20px); color: #d6d3cc; max-width: 46ch; margin: 24px 0 32px; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 999px; border: 1px solid var(--line); background: rgba(19,19,23,.7); backdrop-filter: blur(8px); color: var(--text); font: 500 15px/1 var(--sans); text-decoration: none; cursor: pointer; transition: background .2s, border-color .2s, transform .2s var(--ease); }
+  .btn:hover { border-color: #3a3a44; transform: translateY(-1px); }
+  .btn.primary { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .btn.primary:hover { background: #fff; }
+  .btn .tri { width: 0; height: 0; border-left: 9px solid currentColor; border-top: 6px solid transparent; border-bottom: 6px solid transparent; }
+  .stats { display: flex; flex-wrap: wrap; gap: clamp(24px, 4vw, 56px); margin-top: clamp(40px, 7vh, 72px); padding-top: 24px; border-top: 1px solid rgba(255,255,255,.1); }
+  .stat b { display: block; font: 400 clamp(32px, 3.4vw, 44px)/1 var(--serif); }
+  .stat span { font: 400 12px/1.4 var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+
+  /* Sections */
+  section.group { padding-top: clamp(72px, 10vw, 128px); }
+  .group-head { display: grid; grid-template-columns: auto 1fr; gap: 8px 24px; align-items: baseline; margin-bottom: 32px; }
+  .group-head .n { font: 500 12px/1 var(--mono); color: var(--faint); letter-spacing: .1em; }
+  .group-head h2 { font: 400 clamp(36px, 5vw, 64px)/1 var(--serif); margin: 0; letter-spacing: -.01em; }
+  .group-head p { grid-column: 2; margin: 0; color: var(--muted); max-width: 56ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr)); gap: 20px; }
+
+  /* Cards */
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; transition: border-color .25s, transform .35s var(--ease); }
+  .card:hover { border-color: #3a3a44; transform: translateY(-2px); }
+  .media { position: relative; aspect-ratio: 16 / 9; background: var(--surface-2); overflow: hidden; cursor: pointer; border: 0; padding: 0; width: 100%; color: inherit; text-align: left; }
+  .media video, .media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+  .card:hover .media video, .card:hover .media img { transform: scale(1.03); }
+  .media .tag { position: absolute; left: 12px; top: 12px; font: 500 11px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; padding: 7px 9px; border-radius: 6px; background: rgba(10,10,12,.7); backdrop-filter: blur(6px); color: var(--muted); }
+  .media .play { position: absolute; right: 12px; bottom: 12px; width: 40px; height: 40px; border-radius: 50%; background: rgba(242,240,235,.92); display: grid; place-items: center; opacity: 0; transform: scale(.9); transition: opacity .25s, transform .25s var(--ease); }
+  .media .play::before { content: ''; border-left: 11px solid var(--bg); border-top: 7px solid transparent; border-bottom: 7px solid transparent; margin-left: 3px; }
+  .card:hover .media .play, .media:focus-visible .play { opacity: 1; transform: none; }
+  .media:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .ph { position: absolute; inset: 0; display: grid; place-items: center; background:
+      radial-gradient(120% 90% at 20% 10%, rgba(232,178,92,.22), transparent 55%),
+      radial-gradient(90% 80% at 85% 90%, rgba(255,106,61,.18), transparent 60%), var(--surface-2); }
+  .ph span { font: 400 clamp(56px, 7vw, 88px)/1 var(--serif); color: rgba(242,240,235,.14); }
+  .body { padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .body h3 { font: 600 19px/1.25 var(--sans); margin: 0; letter-spacing: -.01em; }
+  .body p { margin: 0; color: var(--muted); font-size: 15px; }
+  .caps { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 2px 0 0; }
+  .caps li { font-size: 12.5px; padding: 5px 10px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); color: #c9c6bf; }
+  .models { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--line); font: 400 12px/1.5 var(--mono); color: var(--faint); }
+  .models b { color: var(--muted); font-weight: 500; }
+
+  /* How it was made */
+  .how { padding-top: clamp(96px, 12vw, 160px); }
+  .how h2 { font: 400 clamp(36px, 5vw, 64px)/1 var(--serif); margin: 0 0 40px; }
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 0; border-top: 1px solid var(--line); counter-reset: s; }
+  .step { padding: 24px 24px 24px 0; border-bottom: 1px solid var(--line); }
+  .step::before { counter-increment: s; content: '0' counter(s); display: block; font: 500 12px/1 var(--mono); color: var(--accent); margin-bottom: 16px; }
+  .step h4 { margin: 0 0 8px; font: 600 16px/1.3 var(--sans); }
+  .step p { margin: 0; color: var(--muted); font-size: 14.5px; }
+
+  footer { margin-top: clamp(96px, 12vw, 160px); padding: 32px 0 48px; border-top: 1px solid var(--line); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; color: var(--faint); font-size: 14px; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--text); }
+  footer nav { display: flex; gap: 20px; flex-wrap: wrap; }
+
+  /* Lightbox */
+  dialog { width: min(1100px, calc(100vw - 32px)); max-height: calc(100svh - 32px); padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--text); overflow: auto; }
+  dialog::backdrop { background: rgba(0,0,0,.82); backdrop-filter: blur(6px); }
+  dialog video { width: 100%; background: #000; max-height: 70svh; }
+  .lb-info { padding: 20px 24px 24px; display: grid; gap: 10px; }
+  .lb-info h3 { margin: 0; font: 400 32px/1.1 var(--serif); }
+  .lb-meta { display: flex; flex-wrap: wrap; gap: 8px 20px; font: 400 12.5px/1.4 var(--mono); color: var(--muted); }
+  .lb-meta b { color: var(--text); font-weight: 500; }
+  .lb-prompt { margin: 0; padding: 14px 16px; background: var(--surface-2); border-radius: 10px; font: 400 13px/1.6 var(--mono); color: #c9c6bf; white-space: pre-wrap; }
+  .lb-close { position: absolute; right: 12px; top: 12px; z-index: 2; width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(10,10,12,.75); color: var(--text); font-size: 20px; line-height: 1; cursor: pointer; }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 640px) {
+    .bar nav { display: none; }
+    .group-head { grid-template-columns: 1fr; }
+    .group-head p { grid-column: 1; }
+    .stats { gap: 20px 32px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+<header class="bar">
+  <a class="mark" href="#top">Claude <b>×</b> Higgsfield</a>
+  <nav>
+    <a href="#generate">Generate</a>
+    <a href="#direct">Direct</a>
+    <a href="#edit">Edit</a>
+    <a href="#produce">Produce</a>
+    <a href="#how">How it was made</a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-media" id="heroMedia"><div class="ph"></div></div>
+    <div class="wrap">
+      <p class="eyebrow">AI video · twelve capabilities</p>
+      <h1>None of this was <em>filmed.</em></h1>
+      <p class="lede">Every clip on this page was generated from words, a photo or a sketch, then edited in code. Here is what AI video can do today, with a real example for each.</p>
+      <div class="cta">
+        <button class="btn primary" id="reelBtn" type="button"><span class="tri"></span>Watch the reel</button>
+        <a class="btn" href="#generate">See the capabilities</a>
+      </div>
+      <div class="stats" id="stats"></div>
+    </div>
+  </section>
+
+  <div id="groups"></div>
+
+  <section class="how wrap" id="how">
+    <h2>How it was made</h2>
+    <div class="steps">
+      <div class="step reveal"><h4>Directed in words</h4><p>Claude wrote each prompt and chose the model that fits the shot.</p></div>
+      <div class="step reveal"><h4>Generated on Higgsfield</h4><p>Seedance, Kling, Veo and Nano Banana via the Higgsfield CLI, with the cost of every clip logged.</p></div>
+      <div class="step reveal"><h4>Edited in code</h4><p>HyperFrames cut the reel and the title cards: HTML rendered to video, frame by frame.</p></div>
+      <div class="step reveal"><h4>Self-hosted</h4><p>This site runs on a home Kubernetes cluster, served through a Cloudflare Tunnel.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Simon Navon · 2026</span>
+    <nav>
+      <a href="https://github.com/ShimonNavon/video-showcase" rel="noopener">GitHub</a>
+      <a href="https://projects.navonsimon.com/" rel="noopener">More projects</a>
+    </nav>
+  </div>
+</footer>
+
+<dialog id="lb" aria-label="Clip viewer">
+  <button class="lb-close" type="button" aria-label="Close" id="lbClose">×</button>
+  <video id="lbVideo" controls playsinline preload="metadata"></video>
+  <div class="lb-info">
+    <h3 id="lbTitle"></h3>
+    <div class="lb-meta" id="lbMeta"></div>
+    <p class="lb-prompt" id="lbPrompt" hidden></p>
+  </div>
+</dialog>
+
+<script src="data.js"></script>
+<script>
+(() => {
+  const S = window.SHOWCASE;
+  const GROUPS = {
+    Generate: { id: 'generate', text: 'Make video from nothing but a prompt, a photo or two frames.' },
+    Direct:   { id: 'direct',   text: 'Control who is in the shot and how they move.' },
+    Edit:     { id: 'edit',     text: 'Change footage that already exists, and finish it for every screen.' },
+    Produce:  { id: 'produce',  text: 'Whole formats: ads, explainers, motion graphics and their soundtracks.' },
+  };
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const media = p => p ? '/media/' + p : '';
+
+  // Hero
+  const hero = document.getElementById('heroMedia');
+  if (S.hero.video) {
+    hero.innerHTML = `<video autoplay muted loop playsinline preload="auto" ${S.hero.poster ? `poster="${media(S.hero.poster)}"` : ''} src="${media(S.hero.video)}"></video>`;
+  }
+
+  // Stats
+  const clips = S.categories.filter(c => c.demo && c.demo.video).length;
+  const credits = S.categories.reduce((n, c) => n + ((c.demo && c.demo.credits) || 0), 0);
+  const models = new Set(S.categories.flatMap(c => c.models)).size;
+  document.getElementById('stats').innerHTML = [
+    [S.categories.length, 'capabilities'], [models, 'models & tools'],
+    [clips || '—', 'generated clips'], [credits ? Math.round(credits) : '—', 'credits spent'],
+  ].map(([b, s]) => `<div class="stat"><b>${b}</b><span>${s}</span></div>`).join('');
+
+  // Groups + cards
+  let i = 0;
+  document.getElementById('groups').innerHTML = Object.entries(GROUPS).map(([name, g], gi) => {
+    const cards = S.categories.filter(c => c.group === name).map(c => {
+      i++;
+      const d = c.demo;
+      const visual = d && d.video
+        ? `<video muted loop playsinline preload="none" ${d.poster ? `poster="${media(d.poster)}"` : ''} data-src="${media(d.video)}"></video><span class="play"></span>`
+        : d && d.poster ? `<img src="${media(d.poster)}" alt="" loading="lazy">`
+        : `<div class="ph"><span>${String(i).padStart(2, '0')}</span></div>`;
+      return `<article class="card reveal">
+        <button class="media" type="button" data-id="${c.id}" aria-label="Open ${esc(c.title)} clip">${visual}<span class="tag">${String(i).padStart(2, '0')} · ${esc(name)}</span></button>
+        <div class="body">
+          <h3>${esc(c.title)}</h3>
+          <p>${esc(c.blurb)}</p>
+          <ul class="caps">${c.caps.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+          <div class="models"><b>Models</b> · ${c.models.map(esc).join(' · ')}</div>
+        </div>
+      </article>`;
+    }).join('');
+    return `<section class="group wrap" id="${g.id}">
+      <div class="group-head reveal"><span class="n">0${gi + 1}</span><h2>${name}</h2><p>${g.text}</p></div>
+      <div class="grid">${cards}</div>
+    </section>`;
+  }).join('');
+
+  // Autoplay card clips only while they are on screen
+  const vids = document.querySelectorAll('.media video');
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    const v = e.target;
+    if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); }
+    else v.pause();
+  }), { threshold: .35 });
+  vids.forEach(v => io.observe(v));
+
+  // Scroll reveal
+  const ro = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } }), { threshold: .12 });
+  document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+  // Lightbox
+  const lb = document.getElementById('lb'), lv = document.getElementById('lbVideo');
+  const open = (title, d) => {
+    if (!d || !d.video) return;
+    document.getElementById('lbTitle').textContent = title;
+    document.getElementById('lbMeta').innerHTML = [
+      d.model && `<span>Model <b>${esc(d.model)}</b></span>`,
+      d.credits != null && `<span>Cost <b>${d.credits} credits</b></span>`,
+      d.length && `<span>Length <b>${esc(d.length)}</b></span>`,
+    ].filter(Boolean).join('');
+    const pr = document.getElementById('lbPrompt');
+    pr.hidden = !d.prompt; pr.textContent = d.prompt ? 'Prompt — ' + d.prompt : '';
+    lv.poster = d.poster ? media(d.poster) : '';
+    lv.src = media(d.video);
+    lb.showModal();
+    lv.play().catch(() => {});
+  };
+  document.querySelectorAll('.media').forEach(b => b.addEventListener('click', () => {
+    const c = S.categories.find(x => x.id === b.dataset.id);
+    open(c.title, c.demo);
+  }));
+  const reelBtn = document.getElementById('reelBtn');
+  if (!S.reel.video) reelBtn.hidden = true;
+  reelBtn.addEventListener('click', () => open('The reel', { ...S.reel, model: 'HyperFrames edit of the clips below' }));
+  const close = () => { lv.pause(); lv.removeAttribute('src'); lv.load(); lb.close(); };
+  document.getElementById('lbClose').addEventListener('click', close);
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  lb.addEventListener('cancel', e => { e.preventDefault(); close(); });
+})();
+</script>
+</body>
+</html>
