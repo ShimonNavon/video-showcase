@@ -238,6 +238,32 @@ window.SHOWCASE_EXAMPLES = {
   "poster": "reveal-a.jpg",
   "length": "4 s"
  },
+ "angles": {
+  "model": "3d_jutsu_angles",
+  "credits": 2.5,
+  "prompt": "The same woman from the reference shown from four new camera angles in one image: from behind, from the left side in profile, from above at a high angle, and a low angle from below; same clothes, same hair, same grey studio background",
+  "poster": "angles.jpg"
+ },
+ "relight": {
+  "model": "nano_banana_2_relight",
+  "credits": 2,
+  "prompt": "The explorer portrait relit with a soft warm light from the upper left. No prompt: light colour, direction and softness are settings.",
+  "poster": "relight.jpg"
+ },
+ "vector": {
+  "poster": "vector.svg",
+  "model": "Ideogram Vector",
+  "credits": 6.5,
+  "prompt": "Flat vector logo for a juice brand called Pure Orange: a stylised orange slice forming a sun, bold rounded wordmark PURE ORANGE underneath, two colours, orange and deep teal, clean geometric shapes, white background"
+ },
+ "depth": {
+  "model": "depth_anything_video",
+  "credits": 7.57,
+  "prompt": "The manta-ray clip next to its depth map. No prompt.",
+  "video": "depth.mp4",
+  "poster": "depth.jpg",
+  "length": "5 s"
+ },
  "code": {
   "video": "code.mp4",
   "poster": "code.jpg",
@@ -261,6 +287,14 @@ window.SHOWCASE_EXAMPLES = {
   "credits": 0,
   "prompt": "The explainer clip with word-timed subtitles added in HyperFrames from a Whisper transcript.",
   "length": "8 s"
+ },
+ "layers-demo": {
+  "video": "layers-demo.mp4",
+  "poster": "layers-demo.jpg",
+  "model": "Image Decompose + HyperFrames",
+  "credits": 2,
+  "prompt": "The juice ad split into 12 layers plus a clean background, shown as an exploded 3D view.",
+  "length": "9 s"
  },
  "reel": {
   "video": "reel-v2.mp4",

@@ -47,6 +47,9 @@ def job(jid, *, extra=(), model=None, prompt=None, poster=None):
     return e
 
 
+P_VECTOR = m['vector']['prompt'] if 'vector' in m else ''
+
+
 def p(jid):
     return m[jid]['prompt'] if jid in m else ''
 
@@ -88,6 +91,8 @@ ex = {
     'thumb': job('thumb'),
     'music': job('music', poster='reel.jpg'), 'sfx': job('sfx', poster='reveal-a.jpg'),
 }
+ex.update({'angles': job('angles'), 'relight': job('relight', prompt='The explorer portrait relit with a soft warm light from the upper left. No prompt: light colour, direction and softness are settings.'),
+           'vector': {'poster': 'vector.svg', 'model': 'Ideogram Vector', 'credits': 6.5, 'prompt': P_VECTOR}, 'depth': job('depth', prompt='The manta-ray clip next to its depth map. No prompt.')})
 # Free examples rendered in HyperFrames (not in the manifest).
 free = {
     'code': {'video': 'code.mp4', 'poster': 'code.jpg', 'model': 'HyperFrames (HTML + GSAP)', 'credits': 0,
@@ -96,6 +101,8 @@ free = {
                 'prompt': 'The 16:9 clips recomposed for a 9:16 phone screen: per-shot crops, captions inside the safe area, the fisherman\'s real line as the payoff.'},
     'explainer-sub': {'video': 'explainer-sub.mp4', 'poster': 'explainer-video.jpg', 'model': 'Gemini Omni Flash + HyperFrames', 'credits': 0,
                       'prompt': 'The explainer clip with word-timed subtitles added in HyperFrames from a Whisper transcript.'},
+    'layers-demo': {'video': 'layers-demo.mp4', 'poster': 'layers-demo.jpg', 'model': 'Image Decompose + HyperFrames', 'credits': 2,
+                    'prompt': 'The juice ad split into 12 layers plus a clean background, shown as an exploded 3D view.'},
     'reel': {'video': 'reel-v2.mp4', 'poster': 'reel.jpg', 'model': 'HyperFrames', 'credits': 0,
              'prompt': 'Every cut lands on a bar line of the music: the beat grid is detected, then each shot is placed on it to the frame.'},
 }

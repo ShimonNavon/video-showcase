@@ -96,3 +96,49 @@ spent 82.10 credits; failed: none
 ✓ ending       gen/out/ending.mp4
 ✓ choreo       gen/out/choreo.mp4
 spent 186.45 credits; failed: none
+7 jobs, projected spend 258.52 / 270 credits
+→ mesh         hunyuan3d_v3_image_to_3d
+→ angles       3d_jutsu_angles
+→ relight      nano_banana_2_relight
+→ sprite       autosprite
+→ vector       ideogram_vector
+→ depth        depth_anything_video
+→ layers       image_decompose
+✓ mesh         gen/out/mesh.glb
+✓ angles       gen/out/angles.png
+✓ relight      gen/out/relight.png
+✗ sprite       Error: prompt and name are only supported when kind is custom
+Hint: Run: hf model get autosprite
+✓ vector       gen/out/vector.svg
+✓ depth        gen/out/depth.mp4
+Traceback (most recent call last):
+  File "/Users/simon/Developer/video-showcase/gen/run.py", line 109, in <module>
+    main()
+    ~~~~^^
+  File "/Users/simon/Developer/video-showcase/gen/run.py", line 97, in main
+    for jid, rec, err in ex.map(lambda i: run(jobs[i]), wave):
+                         ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/lib/python3.15/concurrent/futures/_base.py", line 672, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/lib/python3.15/concurrent/futures/_base.py", line 312, in _result_or_cancel
+    return fut.result(timeout)
+           ~~~~~~~~~~^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/lib/python3.15/concurrent/futures/_base.py", line 454, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/lib/python3.15/concurrent/futures/_base.py", line 396, in __get_result
+    raise self._exception
+  File "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/lib/python3.15/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/opt/homebrew/Cellar/python@3.15/3.15.0/Frameworks/Python.framework/Versions/3.15/lib/python3.15/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/Users/simon/Developer/video-showcase/gen/run.py", line 97, in <lambda>
+    for jid, rec, err in ex.map(lambda i: run(jobs[i]), wave):
+                                          ~~~^^^^^^^^^
+  File "/Users/simon/Developer/video-showcase/gen/run.py", line 47, in run
+    return job['id'], fetch(job, first), None
+                      ~~~~~^^^^^^^^^^^^
+  File "/Users/simon/Developer/video-showcase/gen/run.py", line 54, in fetch
+    raise RuntimeError(f"{job['id']}: no result_url")
+RuntimeError: layers: no result_url

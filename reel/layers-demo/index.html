@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Instrument Serif"; src: url("assets/fonts/InstrumentSerif.woff2") format("woff2"); }
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #0a0a0c; }
+      #root { position: relative; width: 100%; height: 100%; color: #f2f0eb; font-family: "Inter", sans-serif; }
+      #view { position: absolute; left: 180px; top: 90px; width: 725px; height: 900px; perspective: 2200px; }
+      #stage { position: absolute; inset: 0; transform-style: preserve-3d; }
+      .lay { position: absolute; display: block; }
+      #bg { box-shadow: 0 30px 80px rgba(0,0,0,.55); border-radius: 6px; }
+      #copy { position: absolute; left: 1080px; top: 190px; width: 680px; }
+      #eyebrow { font: 500 30px/1 "JetBrains Mono", monospace; letter-spacing: .14em; text-transform: uppercase; color: #e8b25c; margin-bottom: 28px; }
+      #title { font: 400 104px/1 "Instrument Serif", serif; letter-spacing: -.02em; }
+      #title em { font-style: normal; color: #e8b25c; }
+      #list { list-style: none; padding: 0; margin: 40px 0 0; font: 400 32px/1.6 "JetBrains Mono", monospace; color: rgba(242,240,235,.82); }
+      #list b { color: #e8b25c; font-weight: 500; }
+      #model { margin-top: 36px; font: 500 28px/1 "JetBrains Mono", monospace; color: rgba(242,240,235,.6); }
+    </style>
+  </head>
+  <body>
+    <!-- One flat ad image split into 12 layers by Higgsfield Image Decompose, shown as an exploded 3D view. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="9" data-width="1920" data-height="1080">
+      <div id="view" class="clip" data-start="0" data-duration="9" data-track-index="1" data-layout-allow-overflow data-layout-allow-overlap>
+        <div id="stage">
+          <img id="bg" class="lay" src="assets/layers/background.png" style="left:0;top:0;width:725px;height:900px" alt="">
+          <img id="l0" class="lay" src="assets/layers/layer_00.png" style="left:0.0px;top:518.0px;width:360.2px;height:371.1px" alt="cloth">
+          <img id="l1" class="lay" src="assets/layers/layer_01.png" style="left:250.8px;top:255.5px;width:227.3px;height:507.0px" alt="juice bottle">
+          <img id="l2" class="lay" src="assets/layers/layer_02.png" style="left:431.2px;top:306.2px;width:200.0px;height:232.0px" alt="orange">
+          <img id="l3" class="lay" src="assets/layers/layer_03.png" style="left:537.5px;top:689.1px;width:187.5px;height:153.9px" alt="bowl of cereal">
+          <img id="l4" class="lay" src="assets/layers/layer_04.png" style="left:535.2px;top:466.4px;width:157.8px;height:181.2px" alt="orange">
+          <img id="l5" class="lay" src="assets/layers/layer_05.png" style="left:344.5px;top:607.8px;width:200.0px;height:174.2px" alt="orange">
+          <img id="l6" class="lay" src="assets/layers/layer_06.png" style="left:49.2px;top:325.0px;width:224.2px;height:185.2px" alt="orange">
+          <img id="l7" class="lay" src="assets/layers/layer_07.png" style="left:631.2px;top:486.7px;width:93.8px;height:196.1px" alt="orange">
+          <img id="l8" class="lay" src="assets/layers/layer_08.png" style="left:442.2px;top:519.5px;width:178.1px;height:150.8px" alt="orange">
+          <img id="l9" class="lay" src="assets/layers/layer_09.png" style="left:409.4px;top:378.1px;width:94.5px;height:94.5px" alt="price tag">
+          <img id="l10" class="lay" src="assets/layers/layer_10.png" style="left:442.2px;top:477.3px;width:64.8px;height:127.3px" alt="leaf">
+          <img id="l11" class="lay" src="assets/layers/layer_11.png" style="left:174.2px;top:332.0px;width:118.0px;height:89.8px" alt="leaf">
+        </div>
+      </div>
+      <div id="copy" class="clip" data-start="0" data-duration="9" data-track-index="2">
+        <div id="eyebrow">Image → editable layers</div>
+        <div id="title">One flat ad,<br><em>12 layers.</em></div>
+        <ul id="list"><li>cloth</li><li>juice bottle</li><li><b>6×</b> orange</li><li>bowl of cereal</li><li>price tag</li><li><b>2×</b> leaf</li><li>+ a clean background</li></ul>
+        <div id="model">Higgsfield Image Decompose · 2 credits</div>
+      </div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      // Frame 0: the finished ad, flat. Then the camera turns and the layers separate in depth.
+      tl.fromTo("#stage", { rotationY: 0, rotationX: 0 }, { rotationY: -42, rotationX: 16, duration: 1.4, ease: "power3.inOut" }, 1.2);
+      tl.fromTo("#l0", { z: 0 }, { z: 168, duration: 1.4, ease: "power3.inOut" }, 1.4);
+      tl.fromTo("#l1", { z: 0 }, { z: 259, duration: 1.4, ease: "power3.inOut" }, 1.4);
+      tl.fromTo("#l2", { z: 0 }, { z: 350, duration: 1.4, ease: "power3.inOut" }, 1.4);
+      tl.fromTo("#l3", { z: 0 }, { z: 624, duration: 1.4, ease: "power3.inOut" }, 1.4);
+      tl.fromTo("#l4", { z: 0 }, { z: 715, duration: 1.4, ease: "power3.inOut" }, 1.4);
+      tl.fromTo("#l5", { z: 0 }, { z: 532, duration: 1.4, ease: "power3.inOut" }, 1.4);
+      tl.fromTo("#l6", { z: 0 }, { z: 441, duration: 1.4, ease: "power3.inOut" }, 1.4);
+      tl.fromTo("#l7", { z: 0 }, { z: 897, duration: 1.4, ease: "power3.inOut" }, 1.4);
+      tl.fromTo("#l8", { z: 0 }, { z: 806, duration: 1.4, ease: "power3.inOut" }, 1.4);
+      tl.fromTo("#l9", { z: 0 }, { z: 1080, duration: 1.4, ease: "power3.inOut" }, 1.4);
+      tl.fromTo("#l10", { z: 0 }, { z: 1171, duration: 1.4, ease: "power3.inOut" }, 1.4);
+      tl.fromTo("#l11", { z: 0 }, { z: 988, duration: 1.4, ease: "power3.inOut" }, 1.4);
+      tl.to("#stage", { rotationY: -26, duration: 3.6, ease: "none" }, 2.8);
+      tl.to("#l0", { z: 0, duration: 1.0, ease: "power3.inOut" }, 7.0);
+      tl.to("#l1", { z: 0, duration: 1.0, ease: "power3.inOut" }, 7.0);
+      tl.to("#l2", { z: 0, duration: 1.0, ease: "power3.inOut" }, 7.0);
+      tl.to("#l3", { z: 0, duration: 1.0, ease: "power3.inOut" }, 7.0);
+      tl.to("#l4", { z: 0, duration: 1.0, ease: "power3.inOut" }, 7.0);
+      tl.to("#l5", { z: 0, duration: 1.0, ease: "power3.inOut" }, 7.0);
+      tl.to("#l6", { z: 0, duration: 1.0, ease: "power3.inOut" }, 7.0);
+      tl.to("#l7", { z: 0, duration: 1.0, ease: "power3.inOut" }, 7.0);
+      tl.to("#l8", { z: 0, duration: 1.0, ease: "power3.inOut" }, 7.0);
+      tl.to("#l9", { z: 0, duration: 1.0, ease: "power3.inOut" }, 7.0);
+      tl.to("#l10", { z: 0, duration: 1.0, ease: "power3.inOut" }, 7.0);
+      tl.to("#l11", { z: 0, duration: 1.0, ease: "power3.inOut" }, 7.0);
+      tl.to("#stage", { rotationY: 0, rotationX: 0, duration: 1.0, ease: "power3.inOut" }, 7.0);
+      tl.fromTo("#list li", { opacity: 0 }, { opacity: 1, duration: 0.2, stagger: 0.08 }, 1.6);
+      tl.fromTo("#model", { opacity: 0 }, { opacity: 1, duration: 0.3 }, 2.4);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

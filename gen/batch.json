@@ -1,6 +1,6 @@
 {
   "_note": "Generation batch. Stills run first (they feed later jobs). `needs` names a job whose output is an input. Costs are from `higgsfield generate cost` on 2026-10-24.",
-  "budget": 235,
+  "budget": 270,
   "jobs": [
     {
       "id": "hero",
@@ -506,7 +506,109 @@
       },
       "est": 0.1,
       "prompt": "Sound effect: heavy wooden door creaks open slowly, then slams shut with an echo in a stone hallway"
+    },
+    {
+      "id": "mesh",
+      "cat": "beyond",
+      "model": "hunyuan3d_v3_image_to_3d",
+      "needs": {
+        "image_references": "motion-ref"
+      },
+      "params": {
+        "generate_type": "Normal",
+        "enable_pbr": true,
+        "face_count": 150000
+      },
+      "est": 11,
+      "prompt": null
+    },
+    {
+      "id": "angles",
+      "cat": "beyond",
+      "model": "3d_jutsu_angles",
+      "needs": {
+        "image_references": "char-ref"
+      },
+      "params": {
+        "aspect_ratio": "16:9",
+        "resolution": "1.5k"
+      },
+      "est": 2.5,
+      "prompt": "The same woman from the reference shown from four new camera angles in one image: from behind, from the left side in profile, from above at a high angle, and a low angle from below; same clothes, same hair, same grey studio background"
+    },
+    {
+      "id": "relight",
+      "cat": "beyond",
+      "model": "nano_banana_2_relight",
+      "needs": {
+        "image_references": "char-ref"
+      },
+      "params": {
+        "brightness": 70,
+        "color": "#ff8a3d",
+        "light_quality": "soft",
+        "light_source": "mul"
+      },
+      "est": 2,
+      "prompt": null
+    },
+    {
+      "id": "sprite",
+      "cat": "beyond",
+      "model": "autosprite",
+      "needs": {
+        "image_references": "clay-fox"
+      },
+      "params": {
+        "kind": "run",
+        "frame_count": 16,
+        "is_humanoid": false,
+        "name": "clay-fox-run"
+      },
+      "est": 2,
+      "prompt": "The clay fox baker running to the right, side view, game sprite"
+    },
+    {
+      "id": "vector",
+      "cat": "beyond",
+      "model": "ideogram_vector",
+      "params": {
+        "operation": "generate",
+        "aspect_ratio": "1:1",
+        "quality": "high"
+      },
+      "est": 5,
+      "prompt": "Flat vector logo for a juice brand called Pure Orange: a stylised orange slice forming a sun, bold rounded wordmark PURE ORANGE underneath, two colours, orange and deep teal, clean geometric shapes, white background"
+    },
+    {
+      "id": "depth",
+      "cat": "beyond",
+      "model": "depth_anything_video",
+      "needs": {
+        "video_references": "t2v-ocean"
+      },
+      "params": {
+        "colormap": "inferno",
+        "resolution": "720p",
+        "side_by_side": true
+      },
+      "est": 7.57,
+      "prompt": null
+    },
+    {
+      "id": "layers",
+      "cat": "beyond",
+      "model": "image_decompose",
+      "needs": {
+        "image_references": "ad-image"
+      },
+      "params": {
+        "mode": "standard"
+      },
+      "est": 2,
+      "prompt": null
     }
   ],
-  "_note2": "Round 2 (2026-10-24): one example per capability chip on the site. Skipped on cost: FPS boost, draw-to-video, unboxing."
+  "_note2": "Round 2 (2026-10-24): one example per capability chip on the site. Skipped on cost: FPS boost, draw-to-video, unboxing.",
+  "_note3": "Round 3 (2026-10-24): 'Beyond video' group — 3D, angles, relight, sprites, vector, depth, layers."
 }

@@ -306,5 +306,47 @@
     "credits": 40,
     "job_id": "5b46bc73-ab9d-4472-9d4f-6f21dd7a7e40",
     "prompt": "Mode: UGC, 8 s, 9:16, product = the imported Pure Orange Juice.\n\nCasual UGC selfie video in a sunny home kitchen: a friendly young woman holds up the Pure Orange Juice bottle, takes a sip, smiles and says: Okay, this tastes like actual oranges. I'm hooked.\n\nThe presenter, her voice and the product are all generated; the brand is made up."
+  },
+  "mesh": {
+    "file": "gen/out/mesh.glb",
+    "model": "hunyuan3d_v3_image_to_3d",
+    "prompt": null,
+    "credits": 11,
+    "job_id": "af63f2c9-39f3-4615-a8a1-f034ab0684cc"
+  },
+  "angles": {
+    "file": "gen/out/angles.png",
+    "model": "3d_jutsu_angles",
+    "prompt": "The same woman from the reference shown from four new camera angles in one image: from behind, from the left side in profile, from above at a high angle, and a low angle from below; same clothes, same hair, same grey studio background",
+    "credits": 2.5,
+    "job_id": "763f9013-fab7-422b-8c29-4791c7c1fe17"
+  },
+  "relight": {
+    "file": "gen/out/relight.png",
+    "model": "nano_banana_2_relight",
+    "prompt": null,
+    "credits": 2,
+    "job_id": "32892339-c65d-454f-b26a-cb0542578a8f"
+  },
+  "vector": {
+    "file": "gen/out/vector.svg",
+    "model": "ideogram_vector",
+    "prompt": "Flat vector logo for a juice brand called Pure Orange: a stylised orange slice forming a sun, bold rounded wordmark PURE ORANGE underneath, two colours, orange and deep teal, clean geometric shapes, white background",
+    "credits": 5,
+    "job_id": "04e50d41-6d92-4f18-b2fb-09f3a7497b4b"
+  },
+  "depth": {
+    "file": "gen/out/depth.mp4",
+    "model": "depth_anything_video",
+    "prompt": null,
+    "credits": 7.57,
+    "job_id": "37a11bca-d6d7-40a0-b0a2-c24f54970e68"
+  },
+  "layers": {
+    "file": "gen/out/layers/background.png",
+    "model": "image_decompose",
+    "credits": 2,
+    "job_id": "dcdb5d78-ad71-4c93-b0a3-0de926c25836",
+    "prompt": null
   }
 }
