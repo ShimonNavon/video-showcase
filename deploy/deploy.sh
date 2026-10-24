@@ -9,6 +9,10 @@ cd "$(dirname "$0")/.."
   python3 - <<'PY'
 import json, pathlib
 site = {f.name: f.read_text() for f in sorted(pathlib.Path('site').glob('*')) if f.is_file()}
+# Stamp data.js with its content hash so browsers and Cloudflare never pair new HTML with stale data.
+import hashlib
+v = hashlib.sha1(site['data.js'].encode()).hexdigest()[:10]
+site['index.html'] = site['index.html'].replace('src="data.js"', f'src="data.js?v={v}"')
 print(json.dumps({'apiVersion': 'v1', 'kind': 'ConfigMap', 'metadata': {'name': 'site', 'namespace': 'video-showcase'}, 'data': site}, ensure_ascii=False)); print('---')
 print(json.dumps({'apiVersion': 'v1', 'kind': 'ConfigMap', 'metadata': {'name': 'nginx-conf', 'namespace': 'video-showcase'}, 'data': {'default.conf': pathlib.Path('deploy/nginx.conf').read_text()}}, ensure_ascii=False))
 PY

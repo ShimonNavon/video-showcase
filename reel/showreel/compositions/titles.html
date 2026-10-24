@@ -1,0 +1,87 @@
+<template>
+  <style>
+    @font-face { font-family: "Instrument Serif"; src: url("assets/fonts/InstrumentSerif.woff2") format("woff2"); }
+    #root { position: absolute; inset: 0; color: #f2f0eb; font-family: "Inter", sans-serif; }
+    #shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,10,12,.85), rgba(10,10,12,.35)); }
+    #hook { position: absolute; left: 160px; top: 0; bottom: 0; display: flex; flex-direction: column; justify-content: center; }
+    #hook-eyebrow { font: 500 30px/1 "JetBrains Mono", monospace; letter-spacing: .16em; text-transform: uppercase; color: #e8b25c; margin-bottom: 36px; }
+    .hook-line { font: 400 150px/1 "Instrument Serif", serif; letter-spacing: -.02em; }
+    .hook-line em { font-style: normal; color: #e8b25c; }
+    #scrim { position: absolute; left: 0; right: 0; bottom: 0; height: 420px; background: linear-gradient(to top, rgba(10,10,12,.78), rgba(10,10,12,0)); }
+    .lab { position: absolute; left: 140px; bottom: 120px; }
+    .lab-n { display: inline-block; padding: 10px 14px; border-radius: 8px; background: rgba(10,10,12,.72); font: 500 30px/1 "JetBrains Mono", monospace; color: #e8b25c; letter-spacing: .1em; margin-bottom: 18px; }
+    .lab-n span { color: rgba(242,240,235,.55); }
+    .lab-t { font: 400 96px/1 "Instrument Serif", serif; letter-spacing: -.01em; text-shadow: 0 2px 24px rgba(0,0,0,.4); }
+    .lab-m { margin-top: 18px; font: 500 30px/1 "JetBrains Mono", monospace; color: rgba(242,240,235,.8); }
+    #recap { position: absolute; left: 140px; bottom: 120px; font: 400 96px/1 "Instrument Serif", serif; }
+    #recap em { font-style: normal; color: #e8b25c; }
+    #end { position: absolute; inset: 0; background: #0a0a0c; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+    #end-line { font: 400 132px/1 "Instrument Serif", serif; letter-spacing: -.02em; }
+    #end-line em { font-style: normal; color: #e8b25c; }
+    #end-url { margin-top: 48px; font: 500 44px/1 "JetBrains Mono", monospace; color: #f2f0eb; }
+    #end-by { margin-top: 28px; font: 500 30px/1 "JetBrains Mono", monospace; letter-spacing: .12em; text-transform: uppercase; color: rgba(242,240,235,.6); }
+  </style>
+  <div id="root" data-composition-id="titles" data-width="1920" data-height="1080">
+    <div id="shade" class="clip" data-start="0" data-duration="2.77"></div>
+    <div id="hook" class="clip" data-start="0" data-duration="2.77">
+      <div id="hook-eyebrow">AI video · 12 capabilities</div>
+      <div class="hook-line" id="hook-1">None of this</div>
+      <div class="hook-line" id="hook-2">was <em>filmed.</em></div>
+    </div>
+    <div id="scrim" class="clip" data-start="2.77" data-duration="33.31"></div>
+    <div id="lab-hero" class="clip lab" data-start="2.77" data-duration="2.70"><div class="lab-n">01 <span>/ 12</span></div><div class="lab-t">Text → video</div><div class="lab-m">Kling 4.0</div></div>
+    <div id="lab-t2v-desert" class="clip lab" data-start="5.47" data-duration="2.68"><div class="lab-n">01 <span>/ 12</span></div><div class="lab-t">Directed in words</div><div class="lab-m">Kling 4.0</div></div>
+    <div id="lab-t2v-clay" class="clip lab" data-start="8.15" data-duration="2.69"><div class="lab-n">01 <span>/ 12</span></div><div class="lab-t">Any style</div><div class="lab-m">Kling 4.0</div></div>
+    <div id="lab-t2v-ocean" class="clip lab" data-start="10.84" data-duration="2.64"><div class="lab-n">01 <span>/ 12</span></div><div class="lab-t">Camera moves</div><div class="lab-m">Kling 4.0</div></div>
+    <div id="lab-i2v" class="clip lab" data-start="13.48" data-duration="2.68"><div class="lab-n">02 <span>/ 12</span></div><div class="lab-t">Image → video</div><div class="lab-m">Nano Banana 2 → Kling 4.0</div></div>
+    <div id="lab-frames" class="clip lab" data-start="16.16" data-duration="2.68"><div class="lab-n">03 <span>/ 12</span></div><div class="lab-t">Start & end frames</div><div class="lab-m">Kling 3.0 Omni</div></div>
+    <div id="lab-audio" class="clip lab" data-start="18.84" data-duration="2.46"><div class="lab-n">04 <span>/ 12</span></div><div class="lab-t">Native audio & dialogue</div><div class="lab-m">Veo 3.1 Lite</div></div>
+    <div id="lab-char-1" class="clip lab" data-start="21.3" data-duration="2.61"><div class="lab-n">05 <span>/ 12</span></div><div class="lab-t">One character</div><div class="lab-m">Kling 3.0 Omni</div></div>
+    <div id="lab-char-2" class="clip lab" data-start="23.91" data-duration="2.39"><div class="lab-n">05 <span>/ 12</span></div><div class="lab-t">Any scene</div><div class="lab-m">Kling 3.0 Omni</div></div>
+    <div id="lab-edit" class="clip lab" data-start="26.3" data-duration="2.50"><div class="lab-n">07 <span>/ 12</span></div><div class="lab-t">Edit what was filmed</div><div class="lab-m">Kling 3.0 Omni Edit</div></div>
+    <div id="lab-motion" class="clip lab" data-start="28.8" data-duration="2.50"><div class="lab-n">06 <span>/ 12</span></div><div class="lab-t">Motion control</div><div class="lab-m">Genjutsu Lite</div></div>
+    <div id="lab-code" class="clip lab" data-start="31.3" data-duration="2.35"><div class="lab-n">11 <span>/ 12</span></div><div class="lab-t">Code-rendered video</div><div class="lab-m">HyperFrames</div></div>
+    <div id="recap" class="clip" data-start="33.65" data-duration="2.43">All of it <em>generated.</em></div>
+    <div id="end" class="clip" data-start="36.08" data-duration="3.92">
+      <div id="end-line">Made with <em>words.</em></div>
+      <div id="end-url">video.navonsimon.com</div>
+      <div id="end-by">Claude · Higgsfield · HyperFrames</div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // Hook: the first line is on screen at frame 0 (the thumbnail); the second lands on the first beat.
+    tl.fromTo("#hook-2", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.7);
+    tl.to("#hook > *", { opacity: 0, filter: "blur(8px)", duration: 0.18, stagger: 0.04, ease: "power3.in" }, 2.47);
+    tl.to("#shade", { opacity: 0, duration: 0.3, ease: "power2.inOut" }, 2.47);
+    tl.fromTo("#lab-hero > *", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.07, ease: "power4.out" }, 2.89);
+    tl.to("#lab-hero > *", { opacity: 0, filter: "blur(6px)", duration: 0.12, ease: "power3.in" }, 5.31);
+    tl.fromTo("#lab-t2v-desert > *", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.07, ease: "power4.out" }, 5.59);
+    tl.to("#lab-t2v-desert > *", { opacity: 0, filter: "blur(6px)", duration: 0.12, ease: "power3.in" }, 7.99);
+    tl.fromTo("#lab-t2v-clay > *", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.07, ease: "power4.out" }, 8.27);
+    tl.to("#lab-t2v-clay > *", { opacity: 0, filter: "blur(6px)", duration: 0.12, ease: "power3.in" }, 10.68);
+    tl.fromTo("#lab-t2v-ocean > *", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.07, ease: "power4.out" }, 10.96);
+    tl.to("#lab-t2v-ocean > *", { opacity: 0, filter: "blur(6px)", duration: 0.12, ease: "power3.in" }, 13.32);
+    tl.fromTo("#lab-i2v > *", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.07, ease: "power4.out" }, 13.60);
+    tl.to("#lab-i2v > *", { opacity: 0, filter: "blur(6px)", duration: 0.12, ease: "power3.in" }, 16.00);
+    tl.fromTo("#lab-frames > *", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.07, ease: "power4.out" }, 16.28);
+    tl.to("#lab-frames > *", { opacity: 0, filter: "blur(6px)", duration: 0.12, ease: "power3.in" }, 18.68);
+    tl.fromTo("#lab-audio > *", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.07, ease: "power4.out" }, 18.96);
+    tl.to("#lab-audio > *", { opacity: 0, filter: "blur(6px)", duration: 0.12, ease: "power3.in" }, 21.14);
+    tl.fromTo("#lab-char-1 > *", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.07, ease: "power4.out" }, 21.42);
+    tl.to("#lab-char-1 > *", { opacity: 0, filter: "blur(6px)", duration: 0.12, ease: "power3.in" }, 23.75);
+    tl.fromTo("#lab-char-2 > *", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.07, ease: "power4.out" }, 24.03);
+    tl.to("#lab-char-2 > *", { opacity: 0, filter: "blur(6px)", duration: 0.12, ease: "power3.in" }, 26.14);
+    tl.fromTo("#lab-edit > *", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.07, ease: "power4.out" }, 26.42);
+    tl.to("#lab-edit > *", { opacity: 0, filter: "blur(6px)", duration: 0.12, ease: "power3.in" }, 28.64);
+    tl.fromTo("#lab-motion > *", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.07, ease: "power4.out" }, 28.92);
+    tl.to("#lab-motion > *", { opacity: 0, filter: "blur(6px)", duration: 0.12, ease: "power3.in" }, 31.14);
+    tl.fromTo("#lab-code > *", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.07, ease: "power4.out" }, 31.42);
+    tl.to("#lab-code > *", { opacity: 0, filter: "blur(6px)", duration: 0.12, ease: "power3.in" }, 33.49);
+    tl.fromTo("#recap", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 33.75);
+    tl.fromTo("#end-line", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 36.18);
+    tl.fromTo("#end-url", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 36.68);
+    tl.fromTo("#end-by", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 36.98);
+    window.__timelines["titles"] = tl;
+  </script>
+</template>

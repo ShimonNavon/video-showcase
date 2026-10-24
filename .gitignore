@@ -4,3 +4,8 @@ reel/*/renders/
 node_modules/
 reel/*/node_modules/
 reel/*/.hyperframes/
+deliver/
+reel/*/assets/*.mp4
+reel/*/renders/
+reel/*/beats/
+reel/*/assets/transcript.json

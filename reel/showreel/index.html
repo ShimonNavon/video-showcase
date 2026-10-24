@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: #0a0a0c; }
+      #root { position: relative; width: 100%; height: 100%; }
+      #root > video { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; object-fit: cover; }
+      #v-edit { clip-path: inset(0 0 0 100%); }
+      /* The code-rendered clip is a film of its own: framed as an inset so its chart and the label never collide. */
+      #root > #v-code { left: 660px; top: 90px; width: 1160px; height: 652px; border-radius: 18px; outline: 2px solid #26262e; }
+    </style>
+  </head>
+  <body>
+    <!-- Showreel: one Higgsfield clip per bar of the Seed Audio track; titles and cards live in compositions/titles.html. -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="40" data-width="1920" data-height="1080">
+      <video id="v-hero" class="clip" src="assets/hero.mp4" muted playsinline data-start="0" data-duration="5.47" data-media-start="0.3" data-track-index="1" style="z-index:1"></video>
+      <video id="v-t2v-desert" class="clip" src="assets/t2v-desert.mp4" muted playsinline data-start="5.47" data-duration="2.68" data-media-start="1.0" data-track-index="2" style="z-index:2"></video>
+      <video id="v-t2v-clay" class="clip" src="assets/t2v-clay.mp4" muted playsinline data-start="8.15" data-duration="2.69" data-media-start="1.2" data-track-index="3" style="z-index:3"></video>
+      <video id="v-t2v-ocean" class="clip" src="assets/t2v-ocean.mp4" muted playsinline data-start="10.84" data-duration="2.64" data-media-start="1.0" data-track-index="4" style="z-index:4"></video>
+      <video id="v-i2v" class="clip" src="assets/i2v.mp4" muted playsinline data-start="13.48" data-duration="2.68" data-media-start="1.0" data-track-index="5" style="z-index:5"></video>
+      <video id="v-frames" class="clip" src="assets/frames.mp4" muted playsinline data-start="16.16" data-duration="2.68" data-media-start="1.8" data-track-index="6" style="z-index:6"></video>
+      <video id="v-audio" class="clip" src="assets/audio.mp4" muted playsinline data-start="18.84" data-duration="2.46" data-media-start="1.2" data-track-index="7" style="z-index:7"></video>
+      <video id="v-char-1" class="clip" src="assets/char-1.mp4" muted playsinline data-start="21.3" data-duration="2.61" data-media-start="1.0" data-track-index="8" style="z-index:8"></video>
+      <video id="v-char-2" class="clip" src="assets/char-2.mp4" muted playsinline data-start="23.91" data-duration="2.39" data-media-start="1.0" data-track-index="9" style="z-index:9"></video>
+      <video id="v-edit-src" class="clip" src="assets/t2v-desert.mp4" muted playsinline data-start="26.3" data-duration="2.50" data-media-start="1.5" data-track-index="10" style="z-index:10"></video>
+      <video id="v-edit" class="clip" src="assets/edit.mp4" muted playsinline data-start="26.3" data-duration="2.50" data-media-start="1.5" data-track-index="11" style="z-index:11"></video>
+      <video id="v-motion" class="clip" src="assets/motion.mp4" muted playsinline data-start="28.8" data-duration="2.50" data-media-start="0.8" data-track-index="12" style="z-index:12"></video>
+      <video id="v-code" class="clip" src="assets/code.mp4" muted playsinline data-start="31.3" data-duration="2.35" data-media-start="3.4" data-track-index="13" style="z-index:13"></video>
+      <video id="v-recap-0" class="clip" src="assets/hero.mp4" muted playsinline data-start="33.65" data-duration="0.61" data-media-start="3.2" data-track-index="14" style="z-index:14"></video>
+      <video id="v-recap-1" class="clip" src="assets/t2v-clay.mp4" muted playsinline data-start="34.26" data-duration="0.61" data-media-start="3.0" data-track-index="15" style="z-index:15"></video>
+      <video id="v-recap-2" class="clip" src="assets/t2v-ocean.mp4" muted playsinline data-start="34.86" data-duration="0.61" data-media-start="3.2" data-track-index="16" style="z-index:16"></video>
+      <video id="v-recap-3" class="clip" src="assets/char-2.mp4" muted playsinline data-start="35.47" data-duration="0.61" data-media-start="3.0" data-track-index="17" style="z-index:17"></video>
+      <div id="titles" data-composition-id="titles" data-composition-src="compositions/titles.html" data-track-kind="graphics" data-start="0" data-duration="40" data-track-index="40" data-width="1920" data-height="1080" style="z-index:40"></div>
+      <audio id="music" class="clip" src="assets/music.mp3" data-start="0" data-duration="40" data-volume="1" data-fade-out="2" data-track-index="41"></audio>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      // The edit wipes in from the right halfway through its bar, revealing the hover vehicle over the original car.
+      tl.fromTo("#v-edit", { clipPath: "inset(0 0 0 100%)" }, { clipPath: "inset(0 0 0 0%)", duration: 0.6, ease: "power2.inOut" }, 27.3);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

@@ -85,6 +85,7 @@
   .media .play { position: absolute; right: 12px; bottom: 12px; width: 40px; height: 40px; border-radius: 50%; background: rgba(242,240,235,.92); display: grid; place-items: center; opacity: 0; transform: scale(.9); transition: opacity .25s, transform .25s var(--ease); }
   .media .play::before { content: ''; border-left: 11px solid var(--bg); border-top: 7px solid transparent; border-bottom: 7px solid transparent; margin-left: 3px; }
   .card:hover .media .play, .media:focus-visible .play { opacity: 1; transform: none; }
+  .media .play.still::before { border: 0; width: 14px; height: 14px; margin: 0; border-radius: 3px; box-shadow: inset 0 0 0 2px var(--bg); }
   .media:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
   .ph { position: absolute; inset: 0; display: grid; place-items: center; background:
       radial-gradient(120% 90% at 20% 10%, rgba(232,178,92,.22), transparent 55%),
@@ -116,7 +117,7 @@
   /* Lightbox */
   dialog { width: min(1100px, calc(100vw - 32px)); max-height: calc(100svh - 32px); padding: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--text); overflow: auto; }
   dialog::backdrop { background: rgba(0,0,0,.82); backdrop-filter: blur(6px); }
-  dialog video { width: 100%; background: #000; max-height: 70svh; }
+  dialog video, dialog img { width: 100%; background: #000; max-height: 70svh; object-fit: contain; }
   .lb-info { padding: 20px 24px 24px; display: grid; gap: 10px; }
   .lb-info h3 { margin: 0; font: 400 32px/1.1 var(--serif); }
   .lb-meta { display: flex; flex-wrap: wrap; gap: 8px 20px; font: 400 12.5px/1.4 var(--mono); color: var(--muted); }
@@ -192,6 +193,7 @@
 <dialog id="lb" aria-label="Clip viewer">
   <button class="lb-close" type="button" aria-label="Close" id="lbClose">×</button>
   <video id="lbVideo" controls playsinline preload="metadata"></video>
+  <img id="lbImg" alt="" hidden>
   <div class="lb-info">
     <h3 id="lbTitle"></h3>
     <div class="lb-meta" id="lbMeta"></div>
@@ -219,12 +221,12 @@
   }
 
   // Stats
-  const clips = S.categories.filter(c => c.demo && c.demo.video).length;
-  const credits = S.categories.reduce((n, c) => n + ((c.demo && c.demo.credits) || 0), 0);
+  const clips = S.totals.clips;
+  const credits = S.totals.credits;
   const models = new Set(S.categories.flatMap(c => c.models)).size;
   document.getElementById('stats').innerHTML = [
     [S.categories.length, 'capabilities'], [models, 'models & tools'],
-    [clips || '—', 'generated clips'], [credits ? Math.round(credits) : '—', 'credits spent'],
+    [clips || '—', 'generated clips'], [credits || '—', 'credits spent'],
   ].map(([b, s]) => `<div class="stat"><b>${b}</b><span>${s}</span></div>`).join('');
 
   // Groups + cards
@@ -235,7 +237,7 @@
       const d = c.demo;
       const visual = d && d.video
         ? `<video muted loop playsinline preload="none" ${d.poster ? `poster="${media(d.poster)}"` : ''} data-src="${media(d.video)}"></video><span class="play"></span>`
-        : d && d.poster ? `<img src="${media(d.poster)}" alt="" loading="lazy">`
+        : d && d.poster ? `<img src="${media(d.poster)}" alt="" loading="lazy"><span class="play still"></span>`
         : `<div class="ph"><span>${String(i).padStart(2, '0')}</span></div>`;
       return `<article class="card reveal">
         <button class="media" type="button" data-id="${c.id}" aria-label="Open ${esc(c.title)} clip">${visual}<span class="tag">${String(i).padStart(2, '0')} · ${esc(name)}</span></button>
@@ -269,7 +271,7 @@
   // Lightbox
   const lb = document.getElementById('lb'), lv = document.getElementById('lbVideo');
   const open = (title, d) => {
-    if (!d || !d.video) return;
+    if (!d || !(d.video || d.poster)) return;
     document.getElementById('lbTitle').textContent = title;
     document.getElementById('lbMeta').innerHTML = [
       d.model && `<span>Model <b>${esc(d.model)}</b></span>`,
@@ -278,10 +280,12 @@
     ].filter(Boolean).join('');
     const pr = document.getElementById('lbPrompt');
     pr.hidden = !d.prompt; pr.textContent = d.prompt ? 'Prompt — ' + d.prompt : '';
-    lv.poster = d.poster ? media(d.poster) : '';
-    lv.src = media(d.video);
+    const li = document.getElementById('lbImg');
+    lv.hidden = !d.video; li.hidden = !!d.video;
+    if (d.video) { lv.poster = d.poster ? media(d.poster) : ''; lv.src = media(d.video); }
+    else li.src = media(d.poster);
     lb.showModal();
-    lv.play().catch(() => {});
+    if (d.video) lv.play().catch(() => {});
   };
   document.querySelectorAll('.media').forEach(b => b.addEventListener('click', () => {
     const c = S.categories.find(x => x.id === b.dataset.id);

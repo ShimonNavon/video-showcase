@@ -1,0 +1,58 @@
+22 jobs, projected spend 114.95 / 150 credits
+→ hero         seedance_2_5→ t2v-desert   kling4_0
+
+→ t2v-clay     kling4_0
+→ t2v-ocean    kling4_0
+→ i2v-still    nano_banana_flash
+→ frames-a     gpt_image_2_5
+→ frames-b     gpt_image_2_5✗ hero         Error: "Pro" or "Ultimate" plan required
+
+→ audio        veo3_1_lite
+→ char-ref     gpt_image_2_5
+→ motion-ref   gpt_image_2_5
+→ ads          gpt_image_2_5
+→ explainer    gpt_image_2_5
+→ thumb        nano_banana_pro
+→ music        seed_audio
+→ music-short  seed_audio
+✓ t2v-desert   gen/out/t2v-desert.mp4
+✓ t2v-clay     gen/out/t2v-clay.mp4
+✓ t2v-ocean    gen/out/t2v-ocean.mp4
+✓ i2v-still    gen/out/i2v-still.webp
+✓ frames-a     gen/out/frames-a.webp
+✓ frames-b     gen/out/frames-b.webp
+✗ audio        Error: {"actions":[{"type":"upgrade_plan"}],"billing_period":"monthly","concurrent_jobs_limit":2,"error_type":"rate_limit_reached","job_set_type":"veo3_1_lite","plan_type":"starter","use_unlim":false,"workspace":{"role":"owner","type":"private"}}
+✓ char-ref     gen/out/char-ref.webp
+✓ motion-ref   gen/out/motion-ref.webp
+✓ ads          gen/out/ads.webp
+✓ explainer    gen/out/explainer.webp
+✓ thumb        gen/out/thumb.webp
+✓ music        gen/out/music.mp3
+✓ music-short  gen/out/music-short.mp3
+→ i2v          kling4_0→ frames       kling_o3_flf
+
+→ char-1       kling_o3_image_reference→ char-2       kling_o3_image_reference
+
+→ edit         kling_video_edit
+✗ i2v          Error: job 26f0276f-8bc1-4595-be01-38b8ec3b966a ended with status "failed"
+✓ frames       gen/out/frames.webp
+✓ char-1       gen/out/char-1.webp
+✓ char-2       gen/out/char-2.webp
+✓ edit         gen/out/edit.mp4
+→ motion       hf_mult_motion_control_flash
+→ post-bg      video_background_remover
+✗ motion       Error: Video input not found
+✗ post-bg      Error: Video input not found
+spent 50.95 credits; failed: hero, audio, i2v, motion, post-bg
+5 jobs, projected spend 82.10 / 150 credits
+→ hero         kling4_0
+→ audio        veo3_1_lite
+→ i2v          kling4_0
+→ motion       hf_mult_motion_control_flash
+✓ hero         gen/out/hero.mp4
+✓ audio        gen/out/audio.mp4
+→ post-bg      video_background_remover
+✓ i2v          gen/out/i2v.mp4
+✓ motion       gen/out/motion.mp4
+✓ post-bg      gen/out/post-bg.mp4
+spent 82.10 credits; failed: none

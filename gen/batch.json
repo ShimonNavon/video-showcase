@@ -2,57 +2,263 @@
   "_note": "Generation batch. Stills run first (they feed later jobs). `needs` names a job whose output is an input. Costs are from `higgsfield generate cost` on 2026-10-24.",
   "budget": 150,
   "jobs": [
-    {"id": "hero", "cat": "text-to-video", "model": "seedance_2_5", "params": {"duration": 5, "aspect_ratio": "16:9"}, "est": 35,
-     "prompt": "Slow dolly forward through a rain-soaked neon night market in an old harbour town, warm amber lanterns reflecting on wet cobblestones, steam rising from food stalls, a woman in a yellow raincoat turns toward camera, shallow depth of field, anamorphic lens flares, cinematic film grain, 35mm"},
-    {"id": "t2v-desert", "cat": "text-to-video", "model": "kling4_0", "params": {"duration": 5, "resolution": "1080p", "aspect_ratio": "16:9"}, "est": 5,
-     "prompt": "Aerial crane shot rising over a lone vintage orange car driving across white salt flats at golden hour, long shadows, heat shimmer, mountains on the horizon, cinematic, photoreal"},
-    {"id": "t2v-clay", "cat": "text-to-video", "model": "kling4_0", "params": {"duration": 5, "resolution": "1080p", "aspect_ratio": "16:9"}, "est": 5,
-     "prompt": "Claymation stop-motion style: a tiny clay fox baker pulls a glowing loaf of bread from a brick oven in a cozy miniature bakery, flour particles in warm light, handmade textures, playful"},
-    {"id": "t2v-ocean", "cat": "text-to-video", "model": "kling4_0", "params": {"duration": 5, "resolution": "1080p", "aspect_ratio": "16:9"}, "est": 5,
-     "prompt": "Underwater orbit shot around a free diver gliding past a giant manta ray in clear turquoise water, sun rays piercing the surface, bubbles, photoreal, documentary cinematography"},
-
-    {"id": "i2v-still", "cat": "image-to-video", "model": "nano_banana_flash", "params": {"aspect_ratio": "16:9"}, "est": 1.5,
-     "prompt": "Product photo of a matte black ceramic coffee cup with a gold rim on a dark walnut table, morning window light from the left, a wisp of steam, minimal premium studio aesthetic"},
-    {"id": "i2v", "cat": "image-to-video", "model": "kling4_0", "needs": {"start_image": "i2v-still"}, "params": {"mode": "image-to-video", "duration": 5, "resolution": "1080p"}, "est": 5,
-     "prompt": "Slow 180-degree orbit around the cup as steam curls upward and the morning light shifts, a single drop of coffee ripples the surface"},
-
-    {"id": "frames-a", "cat": "frames", "model": "gpt_image_2_5", "params": {"aspect_ratio": "16:9"}, "est": 0.25,
-     "prompt": "A bare winter oak tree alone on a snowy hill under a pale grey sky, wide shot, cinematic photograph"},
-    {"id": "frames-b", "cat": "frames", "model": "gpt_image_2_5", "params": {"aspect_ratio": "16:9"}, "est": 0.25,
-     "prompt": "The same lone oak tree on the same hill in full summer bloom, lush green leaves, wildflowers, warm golden sunset sky, wide shot, cinematic photograph"},
-    {"id": "frames", "cat": "frames", "model": "kling_o3_flf", "needs": {"start_image": "frames-a", "end_image": "frames-b"}, "params": {"duration": 5, "sound": "off"}, "est": 6.25,
-     "prompt": "Time-lapse of the seasons passing: snow melts, the oak buds, leaves grow and wildflowers bloom as the sky turns to golden sunset, locked-off camera"},
-
-    {"id": "audio", "cat": "audio", "model": "veo3_1_lite", "params": {"duration": 6, "generate_audio": true, "aspect_ratio": "16:9"}, "est": 9,
-     "prompt": "Close-up of an old fisherman with a grey beard on a wooden pier at dawn, seagulls crying, waves lapping. He looks at the camera, smiles and says: \"Nobody believes me, but none of this was filmed.\" Natural light, documentary style"},
-
-    {"id": "char-ref", "cat": "character", "model": "gpt_image_2_5", "params": {"aspect_ratio": "1:1"}, "est": 0.25,
-     "prompt": "Character reference portrait: a young woman explorer with short copper hair, freckles, a green canvas jacket with brass buttons and a leather satchel, neutral grey background, full face visible, studio light"},
-    {"id": "char-1", "cat": "character", "model": "kling_o3_image_reference", "needs": {"image_references": "char-ref"}, "params": {"duration": 5, "sound": "off"}, "est": 6.25,
-     "prompt": "The woman from the reference walks through a misty pine forest at dawn, looking up at the trees, medium tracking shot, cinematic"},
-    {"id": "char-2", "cat": "character", "model": "kling_o3_image_reference", "needs": {"image_references": "char-ref"}, "params": {"duration": 5, "sound": "off"}, "est": 6.25,
-     "prompt": "The woman from the reference reads an old map by lantern light inside a wooden cabin at night, close-up, warm firelight, cinematic"},
-
-    {"id": "motion-ref", "cat": "motion", "model": "gpt_image_2_5", "params": {"aspect_ratio": "16:9"}, "est": 0.25,
-     "prompt": "Full-body shot of a friendly silver retro robot with round eyes standing in a sunlit loft studio, plain floor, wide framing"},
-    {"id": "motion", "cat": "motion", "model": "hf_mult_motion_control_flash", "needs": {"image_references": "motion-ref", "video_references": "char-1"}, "params": {"resolution": "720p"}, "est": 10,
-     "prompt": "The robot performs the same walk and head movement as the person in the reference video"},
-
-    {"id": "edit", "cat": "editing", "model": "kling_video_edit", "needs": {"video_references": "t2v-desert"}, "params": {"mode": "std"}, "est": 12,
-     "prompt": "Turn the orange car into a glowing blue futuristic hover vehicle floating above the salt flats, keep everything else the same"},
-
-    {"id": "post-bg", "cat": "post", "model": "video_background_remover", "needs": {"video_references": "char-1"}, "params": {}, "est": 5,
-     "prompt": null},
-
-    {"id": "ads", "cat": "ads", "model": "gpt_image_2_5", "params": {"aspect_ratio": "16:9"}, "est": 0.25,
-     "prompt": "Bold ad creative: a bottle of cold-pressed orange juice bursting through a splash of fresh orange slices on a vivid teal background, high-speed photography, premium beverage advertising"},
-    {"id": "explainer", "cat": "explainers", "model": "gpt_image_2_5", "params": {"aspect_ratio": "16:9"}, "est": 0.25,
-     "prompt": "Flat illustrated explainer frame in warm paper-cut style: a friendly cartoon narrator points at a simple diagram of how a seed grows into a tree, soft beige background, clean shapes"},
-    {"id": "thumb", "cat": "sound", "model": "nano_banana_pro", "params": {"aspect_ratio": "16:9"}, "est": 2,
-     "prompt": "YouTube thumbnail: a surprised young creator pointing at a giant glowing film reel exploding with colourful video clips, bold text \"NOT FILMED\", high contrast, punchy colours, clean composition"},
-    {"id": "music", "cat": "sound", "model": "seed_audio", "params": {"format": "mp3", "sample_rate": 44100}, "est": 0.1,
-     "prompt": "Instrumental cinematic trailer music, 40 seconds: a pulsing low synth heartbeat builds with taut strings, punchy percussion hits, rising to a bright triumphant final chord; modern, energetic, no vocals"},
-    {"id": "music-short", "cat": "sound", "model": "seed_audio", "params": {"format": "mp3", "sample_rate": 44100}, "est": 0.1,
-     "prompt": "Instrumental hype track for a 25-second social video: immediate punchy drum hit, driving electronic beat, quick risers between sections, ends on a hard stop; no vocals"}
+    {
+      "id": "hero",
+      "cat": "text-to-video",
+      "model": "kling4_0",
+      "params": {
+        "duration": 8,
+        "resolution": "1080p",
+        "aspect_ratio": "16:9"
+      },
+      "est": 8,
+      "prompt": "Slow dolly forward through a rain-soaked neon night market in an old harbour town, warm amber lanterns reflecting on wet cobblestones, steam rising from food stalls, a woman in a yellow raincoat turns toward camera, shallow depth of field, anamorphic lens flares, cinematic film grain, 35mm"
+    },
+    {
+      "id": "t2v-desert",
+      "cat": "text-to-video",
+      "model": "kling4_0",
+      "params": {
+        "duration": 5,
+        "resolution": "1080p",
+        "aspect_ratio": "16:9"
+      },
+      "est": 5,
+      "prompt": "Aerial crane shot rising over a lone vintage orange car driving across white salt flats at golden hour, long shadows, heat shimmer, mountains on the horizon, cinematic, photoreal"
+    },
+    {
+      "id": "t2v-clay",
+      "cat": "text-to-video",
+      "model": "kling4_0",
+      "params": {
+        "duration": 5,
+        "resolution": "1080p",
+        "aspect_ratio": "16:9"
+      },
+      "est": 5,
+      "prompt": "Claymation stop-motion style: a tiny clay fox baker pulls a glowing loaf of bread from a brick oven in a cozy miniature bakery, flour particles in warm light, handmade textures, playful"
+    },
+    {
+      "id": "t2v-ocean",
+      "cat": "text-to-video",
+      "model": "kling4_0",
+      "params": {
+        "duration": 5,
+        "resolution": "1080p",
+        "aspect_ratio": "16:9"
+      },
+      "est": 5,
+      "prompt": "Underwater orbit shot around a free diver gliding past a giant manta ray in clear turquoise water, sun rays piercing the surface, bubbles, photoreal, documentary cinematography"
+    },
+    {
+      "id": "i2v-still",
+      "cat": "image-to-video",
+      "model": "nano_banana_flash",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "est": 1.5,
+      "prompt": "Product photo of a matte black ceramic coffee cup with a gold rim on a dark walnut table, morning window light from the left, a wisp of steam, minimal premium studio aesthetic"
+    },
+    {
+      "id": "i2v",
+      "cat": "image-to-video",
+      "model": "kling4_0",
+      "needs": {
+        "start_image": "i2v-still"
+      },
+      "params": {
+        "mode": "image-to-video",
+        "duration": 5,
+        "resolution": "1080p"
+      },
+      "est": 5,
+      "prompt": "Slow 180-degree orbit around the cup as steam curls upward and the morning light shifts, a single drop of coffee ripples the surface"
+    },
+    {
+      "id": "frames-a",
+      "cat": "frames",
+      "model": "gpt_image_2_5",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "est": 0.25,
+      "prompt": "A bare winter oak tree alone on a snowy hill under a pale grey sky, wide shot, cinematic photograph"
+    },
+    {
+      "id": "frames-b",
+      "cat": "frames",
+      "model": "gpt_image_2_5",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "est": 0.25,
+      "prompt": "The same lone oak tree on the same hill in full summer bloom, lush green leaves, wildflowers, warm golden sunset sky, wide shot, cinematic photograph"
+    },
+    {
+      "id": "frames",
+      "cat": "frames",
+      "model": "kling_o3_flf",
+      "needs": {
+        "start_image": "frames-a",
+        "end_image": "frames-b"
+      },
+      "params": {
+        "duration": 5,
+        "sound": "off"
+      },
+      "est": 6.25,
+      "prompt": "Time-lapse of the seasons passing: snow melts, the oak buds, leaves grow and wildflowers bloom as the sky turns to golden sunset, locked-off camera"
+    },
+    {
+      "id": "audio",
+      "cat": "audio",
+      "model": "veo3_1_lite",
+      "params": {
+        "duration": 6,
+        "generate_audio": true,
+        "aspect_ratio": "16:9"
+      },
+      "est": 9,
+      "prompt": "Close-up of an old fisherman with a grey beard on a wooden pier at dawn, seagulls crying, waves lapping. He looks at the camera, smiles and says: \"Nobody believes me, but none of this was filmed.\" Natural light, documentary style"
+    },
+    {
+      "id": "char-ref",
+      "cat": "character",
+      "model": "gpt_image_2_5",
+      "params": {
+        "aspect_ratio": "1:1"
+      },
+      "est": 0.25,
+      "prompt": "Character reference portrait: a young woman explorer with short copper hair, freckles, a green canvas jacket with brass buttons and a leather satchel, neutral grey background, full face visible, studio light"
+    },
+    {
+      "id": "char-1",
+      "cat": "character",
+      "model": "kling_o3_image_reference",
+      "needs": {
+        "image_references": "char-ref"
+      },
+      "params": {
+        "duration": 5,
+        "sound": "off"
+      },
+      "est": 6.25,
+      "prompt": "The woman from the reference walks through a misty pine forest at dawn, looking up at the trees, medium tracking shot, cinematic"
+    },
+    {
+      "id": "char-2",
+      "cat": "character",
+      "model": "kling_o3_image_reference",
+      "needs": {
+        "image_references": "char-ref"
+      },
+      "params": {
+        "duration": 5,
+        "sound": "off"
+      },
+      "est": 6.25,
+      "prompt": "The woman from the reference reads an old map by lantern light inside a wooden cabin at night, close-up, warm firelight, cinematic"
+    },
+    {
+      "id": "motion-ref",
+      "cat": "motion",
+      "model": "gpt_image_2_5",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "est": 0.25,
+      "prompt": "Full-body shot of a friendly silver retro robot with round eyes standing in a sunlit loft studio, plain floor, wide framing"
+    },
+    {
+      "id": "motion",
+      "cat": "motion",
+      "model": "hf_mult_motion_control_flash",
+      "needs": {
+        "image_references": "motion-ref",
+        "video_references": "char-1"
+      },
+      "params": {
+        "resolution": "720p"
+      },
+      "est": 10,
+      "prompt": "The robot performs the same walk and head movement as the person in the reference video"
+    },
+    {
+      "id": "edit",
+      "cat": "editing",
+      "model": "kling_video_edit",
+      "needs": {
+        "video_references": "t2v-desert"
+      },
+      "params": {
+        "mode": "std"
+      },
+      "est": 12,
+      "prompt": "Turn the orange car into a glowing blue futuristic hover vehicle floating above the salt flats, keep everything else the same"
+    },
+    {
+      "id": "post-bg",
+      "cat": "post",
+      "model": "video_background_remover",
+      "needs": {
+        "video_references": "char-1"
+      },
+      "params": {},
+      "est": 5,
+      "prompt": null
+    },
+    {
+      "id": "ads",
+      "cat": "ads",
+      "model": "gpt_image_2_5",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "est": 0.25,
+      "prompt": "Bold ad creative: a bottle of cold-pressed orange juice bursting through a splash of fresh orange slices on a vivid teal background, high-speed photography, premium beverage advertising"
+    },
+    {
+      "id": "explainer",
+      "cat": "explainers",
+      "model": "gpt_image_2_5",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "est": 0.25,
+      "prompt": "Flat illustrated explainer frame in warm paper-cut style: a friendly cartoon narrator points at a simple diagram of how a seed grows into a tree, soft beige background, clean shapes"
+    },
+    {
+      "id": "thumb",
+      "cat": "sound",
+      "model": "nano_banana_pro",
+      "params": {
+        "aspect_ratio": "16:9"
+      },
+      "est": 2,
+      "prompt": "YouTube thumbnail: a surprised young creator pointing at a giant glowing film reel exploding with colourful video clips, bold text \"NOT FILMED\", high contrast, punchy colours, clean composition"
+    },
+    {
+      "id": "music",
+      "cat": "sound",
+      "model": "seed_audio",
+      "params": {
+        "format": "mp3",
+        "sample_rate": 44100
+      },
+      "est": 0.1,
+      "prompt": "Instrumental cinematic trailer music, 40 seconds: a pulsing low synth heartbeat builds with taut strings, punchy percussion hits, rising to a bright triumphant final chord; modern, energetic, no vocals"
+    },
+    {
+      "id": "music-short",
+      "cat": "sound",
+      "model": "seed_audio",
+      "params": {
+        "format": "mp3",
+        "sample_rate": 44100
+      },
+      "est": 0.1,
+      "prompt": "Instrumental hype track for a 25-second social video: immediate punchy drum hit, driving electronic beat, quick risers between sections, ends on a hard stop; no vocals"
+    }
   ]
 }
